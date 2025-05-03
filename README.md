@@ -1,1 +1,1 @@
-# FinalProject-SIManajemenPasien
+Sistem Informasi Manajemen Pasien
