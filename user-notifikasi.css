@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f6fc;
+}
+
+/* Notifikasi */
+.navbar {
+    background: #2859BC;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.navbar .logo {
+    width: 40px;
+    margin-right: 15px;
+}
+
+.judul-halaman {
+    font-size: 20px;
+}
+
+.notifikasi-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.notifikasi-card {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.notifikasi-card i {
+    font-size: 24px;
+    color: #2859BC;
+    margin-top: 5px;
+}
+
+.notifikasi-card h3 {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.notifikasi-card .waktu {
+    font-size: 12px;
+    color: #666;
+}
+
+.belum-dibaca {
+    border-left: 5px solid #2859BC;
+}

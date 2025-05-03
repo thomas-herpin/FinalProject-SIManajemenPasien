@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard User - Medical Health Center</title>
+    <link rel="stylesheet" href="user-dashboard.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="fontawesome/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="navbar-left">
+            <a href="dashboard-user.html">
+                <img src="assets/logo.svg" alt="Medical Health Center Logo" class="logo" />
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="user-fulldoctor.html">Dokter</a>
+            <a href="#">Farmasi</a>
+            <a href="#">Rekam Medis</a>
+        </nav>
+
+        <div class="navbar-right">
+            <button class="notif-btn">
+                <a href="user-notifikasi.html" class="notif-btn">
+                    <i class="fa-regular fa-bell" style="color: #2859BC;"></i>
+                </a>
+            </button>
+            <div class="profile-dropdown">
+                <button class="profile-btn" id="profileToggle">
+                    <i class="fa-regular fa-user" style="color: #2859BC; font-size: 18px;"></i>
+                </button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="user-dashboard.html">Profil</a>
+                    <a href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- User Info -->
+    <section class="user-info">
+        <img src="assets/profil.jpg" alt="Foto Profil" class="profile-img" />
+        <div class="info-detail">
+            <h2>Febiola Hortensia Lengkong</h2>
+            <p>Nama: <span>Febiola H. Lengkong</span></p>
+            <p>Nomor Rekam Medis: <span>123456789010</span></p>
+            <p>Nomor HP: <span>+62 81335492303</span></p>
+            <p>Email: <span>febiolalengkong026@student.unsrat.ac.id</span></p>
+        </div>
+        <a href="#" class="edit-icon"><i class="fa-regular fa-pen-to-square"></i></a>
+    </section>
+
+    <!-- Table -->
+    <section class="appointment-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Dokter</th>
+                    <th>Spesialis</th>
+                    <th>Tanggal dan Waktu</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.</td>
+                    <td>Dr. Adrian Santoso, Sp.JP</td>
+                    <td>Jantung</td>
+                    <td>10 Apr 2025, 10:00</td>
+                    <td><span class="status success">Berhasil</span></td>
+                    <td><i class="fa-solid fa-trash delete-icon"></i></td>
+                </tr>
+                <tr>
+                    <td>2.</td>
+                    <td>Dr. Adrian Santoso, Sp.JP</td>
+                    <td>Jantung</td>
+                    <td>10 Apr 2025, 10:00</td>
+                    <td><span class="status pending">Menunggu</span></td>
+                    <td><i class="fa-solid fa-trash delete-icon"></i></td>
+                </tr>
+                <tr>
+                    <td>3.</td>
+                    <td>Dr. Adrian Santoso, Sp.JP</td>
+                    <td>Jantung</td>
+                    <td>10 Apr 2025, 10:00</td>
+                    <td><span class="status success">Berhasil</span></td>
+                    <td><i class="fa-solid fa-trash delete-icon"></i></td>
+                </tr>
+                <tr>
+                    <td>4.</td>
+                    <td>Dr. Adrian Santoso, Sp.JP</td>
+                    <td>Jantung</td>
+                    <td>10 Apr 2025, 10:00</td>
+                    <td><span class="status rejected">Ditolak</span></td>
+                    <td><i class="fa-solid fa-trash delete-icon"></i></td>
+                </tr>
+                <!-- Tambah baris lainnya jika perlu -->
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <span>01</span>
+            <span class="active">02</span>
+            <span>03</span>
+            <span>...</span>
+            <span>05</span>
+            <span>06</span>
+        </div>
+    </section>
+
+    <!-- Edit User Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h3>Edit Data User</h3>
+            <form>
+                <label>Nama:</label>
+                <input type="text" value="Febiola H. Lengkong" />
+
+                <label>Nomor Rekam Medis:</label>
+                <input type="text" value="123456789010" />
+
+                <label>Nomor HP:</label>
+                <input type="text" value="+62 81335492303" />
+
+                <label>Email:</label>
+                <input type="email" value="febiolalengkong026@student.unsrat.ac.id" />
+
+                <button type="submit" class="save-btn">Simpan</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const editBtn = document.querySelector('.edit-icon');
+        const modal = document.getElementById('editModal');
+        const closeModal = document.getElementById('closeModal');
+
+        editBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            modal.style.display = 'block';
+        });
+
+        closeModal.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        };
+    </script>
+    <script>
+        const profileToggle = document.getElementById('profileToggle');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        profileToggle.addEventListener('click', function () {
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Optional: Hide dropdown when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!profileToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

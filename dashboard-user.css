@@ -1,0 +1,290 @@
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f1f6fd;
+    color: #1e1e1e;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background-color: transparent;
+  }
+  
+  .logo {
+    width: 130px;
+  }
+  
+  .nav-menu a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 20px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-menu a:hover {
+    color: #2859BC;
+  }  
+  
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .notif-btn {
+    font-size: 24px;
+    background: none;
+    border: none;        /* Hilangkan border */
+    outline: none;       /* Hilangkan garis fokus (opsional) */
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .notif-btn:hover i {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
+  
+
+  .login-btn {
+    background-color: #2859BC;
+    color: white;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 68, 255, 0.2);
+    cursor: pointer;
+  }
+  
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    padding: 80px 40px 60px;
+  }
+  
+  .hero h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1e1e1e;
+    margin-bottom: 16px;
+  }
+  
+  .hero-subtitle {
+    font-size: 16px;
+    color: #7b7b7b;
+    max-width: 700px;
+    margin: 0 auto 40px;
+  }
+  
+  /* Search Box */.search-container {
+  display: flex;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  /*Pentingagartombolmengikutibentukradius*/box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background-color: white;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 15px 20px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  border-radius: 0; /* pastikan input tidak menabrak radius */
+}
+
+.search-button {
+  background-color: #2859BC;
+  border: none;
+  padding: 0 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  border-radius: 16px;
+  /*hapusradiusagarikutcontainer*/:;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
+}
+
+/* Section 2  */
+.doctor-recommendation {
+    margin-top: 60px; /* jarak dari section atas */
+    margin-bottom: 60px;
+    padding: 60px 40px;
+    text-align: center;
+    background-color: #fff;
+  }
+  
+  .doctor-recommendation h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .doctor-recommendation p {
+    color: #777;
+    font-size: 16px;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+  
+  .doctor-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+  }
+  
+  .doctor-card {
+    background-color: #f2f7ff;
+    border-radius: 8px;
+    width: 250px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+  
+  .doctor-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .doctor-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+  }
+  
+  .doctor-info {
+    padding: 15px;
+    text-align: left;
+  }
+  
+  .doctor-info h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 5px 0;
+    color: #000;
+  }
+  
+  .doctor-info .specialty {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 15px;
+  }
+  
+  .detail-button {
+    background-color: #2859BC;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;
+  }
+  
+  .detail-button:hover {
+    background-color: #2859BC;
+  }
+  
+  .more-button-container {
+    margin-top: 40px;
+  }
+  
+  .more-button {
+    background-color: #2859BC;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .more-button:hover {
+    background-color: #2859BC;
+  }
+  
+ /* Profile Dropdown */
+.profile-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  display: none;
+  min-width: 150px;
+  z-index: 999;
+  flex-direction: column;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Show menu on hover */
+.profile-dropdown:hover .dropdown-menu {
+  display: flex;
+}
