@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard User - Medical Health Center</title>
+    <link rel="stylesheet" href="user-booking1.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="fontawesome/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="navbar-left">
+            <a href="dashboard-user.html">
+                <img src="assets/logo.svg" alt="Medical Health Center Logo" class="logo" />
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="user-fulldoctor.html">Dokter</a>
+            <a href="#">Farmasi</a>
+            <a href="#">Rekam Medis</a>
+        </nav>
+
+        <div class="navbar-right">
+            <button class="notif-btn">
+                <a href="user-notifikasi.html" class="notif-btn">
+                    <i class="fa-regular fa-bell" style="color: #2859BC;"></i>
+                </a>
+            </button>
+
+            <div class="profile-dropdown">
+                <button class="profile-btn">
+                    <i class="fa-regular fa-user" style="color: #2859BC; font-size: 18px;"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="user-dashboard.html">Profil</a>
+                    <a href="#" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="doctor-detail-section">
+        <img src="assets/doctor1.jpg" alt="Foto Dokter" class="doctor-image" />
+
+        <div class="doctor-info">
+            <h2>Dr. Adrian Santoso, Sp.JP</h2>
+            <p class="specialist">Spesialis Jantung</p>
+
+            <!-- Kalender -->
+            <div class="calendar-schedule-container">
+                <div class="calendar">
+                    <div class="calendar-header">
+                        <button id="prevMonth">&#8592;</button>
+                        <span id="monthYear">April 2025</span>
+                        <button id="nextMonth">&#8594;</button>
+                    </div>
+                    <div class="calendar-days">
+                        <div>Sen</div>
+                        <div>Sel</div>
+                        <div>Rab</div>
+                        <div>Kam</div>
+                        <div>Jum</div>
+                        <div>Sab</div>
+                        <div>Min</div>
+                    </div>
+                    <div class="calendar-dates" id="calendarDates"></div>
+                    <div class="calendar-legend">
+                        <span class="legend available"></span> Tersedia
+                        <span class="legend limited"></span> Slot Terbatas
+                        <span class="legend unavailable"></span> Jadwal Tidak Tersedia
+                    </div>
+                </div>
+                <div class="schedule-times">
+                    <h4 id="selectedDay">Pediatric</h4>
+                    <div class="time-slots" id="timeSlots"></div>
+                </div>
+            </div>
+
+            <a href="user-form.html" class="next-button">Selanjutnya</a>
+        </div>
+    </section>
+    <script>
+        document.getElementById("logoutBtn")?.addEventListener("click", function (e) {
+            e.preventDefault();
+            window.location.href = "login.html";
+        });
+
+        const calendarDates = document.getElementById("calendarDates");
+        const timeSlots = document.getElementById("timeSlots");
+        const monthYear = document.getElementById("monthYear");
+        const selectedDay = document.getElementById("selectedDay");
+
+        const scheduleMap = {
+            "2025-04-11": ["10:30", "10:45", "11:00", "11:30", "11:45", "12:15", "12:30", "12:45"],
+            "2025-04-12": ["09:00", "09:30"]
+        };
+
+        const availability = {
+            "2025-04-07": "limited",
+            "2025-04-08": "limited",
+            "2025-04-11": "available",
+            "2025-04-12": "limited",
+            "2025-04-15": "available",
+            "2025-04-20": "unavailable"
+        };
+
+        const today = new Date(2025, 3);
+        const daysInMonth = new Date(2025, 4, 0).getDate();
+
+        function renderCalendar() {
+            monthYear.innerText = "April 2025";
+            calendarDates.innerHTML = "";
+
+            const startDay = new Date(2025, 3, 1).getDay();
+            const offset = (startDay + 6) % 7;
+
+            for (let i = 0; i < offset; i++) {
+                const empty = document.createElement("div");
+                calendarDates.appendChild(empty);
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = `2025-04-${day.toString().padStart(2, "0")}`;
+                const btn = document.createElement("button");
+                btn.innerText = day;
+
+                const status = availability[date];
+                if (status === "available") btn.classList.add("available");
+                else if (status === "limited") btn.classList.add("limited");
+                else if (status === "unavailable") btn.classList.add("unavailable");
+
+                if (status !== "unavailable") {
+                    btn.addEventListener("click", () => selectDate(date, btn));
+                }
+
+                calendarDates.appendChild(btn);
+            }
+        }
+
+        function selectDate(date, btn) {
+            const buttons = document.querySelectorAll(".calendar-dates button");
+            buttons.forEach(b => b.classList.remove("selected"));
+            btn.classList.add("selected");
+
+            const slots = scheduleMap[date] || [];
+            timeSlots.innerHTML = "";
+            selectedDay.innerText = `Jadwal Dokter – ${date}`;
+
+            slots.forEach(slot => {
+                const slotBtn = document.createElement("button");
+                slotBtn.innerText = slot;
+                slotBtn.addEventListener("click", () => {
+                    document.querySelectorAll(".time-slots button").forEach(b => b.classList.remove("active"));
+                    slotBtn.classList.add("active");
+                });
+                timeSlots.appendChild(slotBtn);
+            });
+        }
+
+        renderCalendar();
+    </script>
+</body>
+
+</html>

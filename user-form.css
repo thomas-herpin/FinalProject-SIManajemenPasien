@@ -1,0 +1,280 @@
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    color: #1e1e1e;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background-color: transparent;
+  }
+  
+  .logo {
+    width: 130px;
+  }
+  
+  .nav-menu a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 20px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-menu a:hover {
+    color: #2859BC;
+  }
+  
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .notif-btn {
+    font-size: 24px;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .notif-btn:hover i {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+  }
+  
+  .login-btn {
+    background-color: #2859BC;
+    color: white;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 68, 255, 0.2);
+    cursor: pointer;
+  }
+  
+  /* Booking Form */
+  .booking-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #FAFAFA;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .booking-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .form-group {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group.full-width {
+    flex: 1 1 100%;
+  }
+  
+  label {
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  input[type="time"] {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #F1F1F1;
+    font-size: 14px;
+  }
+  
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="date"]:focus,
+  input[type="time"]:focus {
+    outline: 2px solid #2859BC;
+    background-color: #ffffff;
+  }
+  
+  .radio-group {
+    display: flex;
+    gap: 30px;
+    margin-top: 5px;
+  }
+  
+  .radio-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+  }
+  
+  input[type="radio"] {
+    accent-color: #2859BC;
+    width: 18px;
+    height: 18px;
+  }
+  
+  .booking-button {
+    background-color: #2859BC;
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    align-self: flex-end;
+    box-shadow: 0 4px 6px rgba(0, 68, 255, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .booking-button:hover {
+    background-color: #1f4bab;
+  }
+  
+  /* Popup Overlay */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    text-align: center;
+    width: 350px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.popup-content h2 {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    color: #1e1e1e;
+}
+
+.popup-icon {
+    font-size: 48px;
+    color: #2859BC;
+}
+
+.status-btn {
+    display: inline-block;
+    background-color: #2859BC;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 25px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 68, 255, 0.2);
+    transition: background 0.3s ease;
+}
+
+.status-btn:hover {
+    background-color: #1d3f8f;
+}
+
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+ /* Profile Dropdown */
+ .profile-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  display: none;
+  min-width: 150px;
+  z-index: 999;
+  flex-direction: column;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Show menu on hover */
+.profile-dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+.next-button {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 10px 16px;
+  background-color: #2859BC;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+}

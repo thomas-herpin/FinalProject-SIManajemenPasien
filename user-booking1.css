@@ -1,0 +1,311 @@
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    color: #1e1e1e;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background-color: transparent;
+  }
+  
+  .logo {
+    width: 130px;
+  }
+  
+  .nav-menu a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 20px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-menu a:hover {
+    color: #2859BC;
+  }  
+  
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .notif-btn {
+    font-size: 24px;
+    background: none;
+    border: none;        /* Hilangkan border */
+    outline: none;       /* Hilangkan garis fokus (opsional) */
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .notif-btn:hover i {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
+  
+
+  .login-btn {
+    background-color: #2859BC;
+    color: white;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 68, 255, 0.2);
+    cursor: pointer;
+  }
+
+  .doctor-detail-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    background-color: white;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+  
+  .doctor-image {
+    width: 300px;
+    height: 380px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  .doctor-info {
+    max-width: 600px;
+  }
+  
+  .doctor-info h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  
+  .doctor-info .specialist {
+    font-size: 16px;
+    color: #999;
+    margin-bottom: 24px;
+  }
+  
+  .calendar-schedule-container {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+}
+.calendar {
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 8px;
+    width: 300px;
+    font-family: sans-serif;
+}
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+.calendar-days,
+.calendar-dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    text-align: center;
+}
+.calendar-days div {
+    font-weight: bold;
+}
+.calendar-dates button {
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #f1f1f1;
+}
+.calendar-dates button.available {
+    background-color: #E0F8E9;
+}
+.calendar-dates button.limited {
+    background-color: #FFF5CC;
+}
+.calendar-dates button.unavailable {
+    background-color: #eee;
+    cursor: not-allowed;
+    color: #999;
+}
+.calendar-dates button.selected {
+    background-color: #2859BC;
+    color: white;
+}
+.calendar-legend {
+    margin-top: 10px;
+    font-size: 12px;
+}
+.legend {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+    border-radius: 50%;
+}
+.legend.available {
+    background-color: #26A65B;
+}
+.legend.limited {
+    background-color: #F4C542;
+}
+.legend.unavailable {
+    background-color: #333;
+}
+.schedule-times {
+    flex: 1;
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 8px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+}
+.time-slots {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+    margin-bottom: 16px;
+}
+.time-slots button {
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+.time-slots button.active {
+    background-color: #2859BC;
+    color: white;
+}
+.next-button {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 10px 16px;
+    background-color: #2859BC;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+  
+  .next-button {
+    background-color: #2859BC;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 68, 255, 0.2);
+  }
+  
+  .schedule-table-container {
+    overflow-x: auto;
+    margin-bottom: 40px;
+    border-radius: 12px;
+  }
+  
+  .doctor-schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    background-color: #eef4fd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+  
+.doctor-schedule-table th,
+.doctor-schedule-table td {
+  padding: 16px 12px;
+  border: 1px solid #dce3f0;
+  font-size: 11.5px; /* Ubah nilai ini */
+  vertical-align: top;
+  color: #1e1e1e;
+}
+
+  
+  .doctor-schedule-table th {
+    background-color: #2859BC;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+ /* Profile Dropdown */
+ .profile-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  display: none;
+  min-width: 150px;
+  z-index: 999;
+  flex-direction: column;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Show menu on hover */
+.profile-dropdown:hover .dropdown-menu {
+  display: flex;
+}

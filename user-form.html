@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard User - Medical Health Center</title>
+    <link rel="stylesheet" href="user-form.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="fontawesome/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="navbar-left">
+            <a href="dashboard-user.html">
+                <img src="assets/logo.svg" alt="Medical Health Center Logo" class="logo" />
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="user-fulldoctor.html">Dokter</a>
+            <a href="#">Farmasi</a>
+            <a href="#">Rekam Medis</a>
+        </nav>
+
+        <div class="navbar-right">
+            <button class="notif-btn">
+                <a href="user-notifikasi.html" class="notif-btn">
+                    <i class="fa-regular fa-bell" style="color: #2859BC;"></i>
+                </a>
+            </button>
+
+            <div class="profile-dropdown">
+                <button class="profile-btn">
+                    <i class="fa-regular fa-user" style="color: #2859BC; font-size: 18px;"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="user-dashboard.html">Profil</a>
+                    <a href="#" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Form Booking -->
+    <section class="booking-container">
+        <form class="booking-form">
+            <div class="form-group">
+                <label for="nama">Nama</label>
+                <input type="text" id="nama" name="nama" />
+            </div>
+
+            <div class="form-group">
+                <label for="noRekam">Nomor Rekam Medis</label>
+                <input type="text" id="noRekam" name="noRekam" />
+            </div>
+
+            <div class="form-group">
+                <label for="noHp">Nomor HP</label>
+                <input type="text" id="noHp" name="noHp" />
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" />
+            </div>
+
+            <div class="form-group full-width">
+                <label for="keluhan">Keluhan</label>
+                <input type="text" id="keluhan" name="keluhan" />
+            </div>
+
+            <div class="form-group full-width">
+                <label>Metode Konsultasi</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="konsultasi" value="tatap-muka" checked />
+                        Tatap Muka
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="konsultasi" value="online" />
+                        Online
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <button type="submit" class="booking-button">Buat Janji Temu</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Popup Berhasil -->
+    <div id="popup" class="popup-overlay">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup()">&times;</button>
+            <div class="popup-icon">
+                <i class="fa-regular fa-circle-check"></i>
+            </div>
+            <h2>Berhasil diajukan!</h2>
+            <a href="user-dashboard.html" class="status-btn">Cek Status</a>
+        </div>
+    </div>
+
+    <script>
+        // ===== Booking Form Logic =====
+        const popup = document.getElementById("popup");
+        const form = document.querySelector(".booking-form");
+
+        function showPopup() {
+            popup.style.display = "flex";
+        }
+
+        function closePopup() {
+            popup.style.display = "none";
+        }
+
+        if (form) {
+            form.addEventListener("submit", function (e) {
+                e.preventDefault(); // Cegah reload
+
+                // Ambil semua input
+                const nama = document.getElementById("nama").value.trim();
+                const noRekam = document.getElementById("noRekam").value.trim();
+                const noHp = document.getElementById("noHp").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const keluhan = document.getElementById("keluhan").value.trim();
+                const konsultasi = document.querySelector('input[name="konsultasi"]:checked');
+
+                // Validasi manual
+                if (nama && noRekam && noHp && email && keluhan && konsultasi) {
+                    showPopup();
+                    form.reset(); // Optional: reset form setelah submit
+                } else {
+                    alert("Harap lengkapi semua data sebelum membuat janji temu.");
+                }
+            });
+        }
+
+        // ===== Logout Logic =====
+        const logoutBtn = document.getElementById("logoutBtn");
+        if (logoutBtn) {
+            logoutBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                window.location.href = "login.html";
+            });
+        }
+    </script>
+</body>
+
+</html>
