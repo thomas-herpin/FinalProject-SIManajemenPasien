@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notifikasi Dokter</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="fontawesome/css/all.min.css" />
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h3 class="mb-4"><i class="fa-solid fa-bell mr-2"></i>Notifikasi Jadwal Konsultasi</h3>
+
+        <div id="notifikasiContainer">
+            <div class="alert alert-info">Tidak ada jadwal konsultasi hari ini.</div>
+        </div>
+
+        <a href="dashboard-dokter.html" class="btn btn-secondary mt-3">
+            <i class="fa-solid fa-arrow-left mr-2"></i>Kembali ke Dashboard
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const jadwalHariIni = [
+                {
+                    namaPasien: "Jess Mariano",
+                    waktu: "09:00",
+                    tanggal: "2025-04-08",
+                    jenis: "Tatap Muka",
+                    keluhan: "Demam dan sakit kepala",
+                    status: "Menunggu"
+                },
+                {
+                    namaPasien: "Rory Gilmore",
+                    waktu: "11:30",
+                    tanggal: "2025-04-08",
+                    jenis: "Online",
+                    keluhan: "Sakit perut",
+                    status: "Menunggu"
+                }
+            ];
+
+            const today = new Date().toISOString().split("T")[0];
+            const jadwalHariIniAda = jadwalHariIni.filter(j => j.tanggal === today);
+
+            const container = document.getElementById("notifikasiContainer");
+            container.innerHTML = "";
+
+            if (jadwalHariIniAda.length > 0) {
+                jadwalHariIniAda.forEach(j => {
+                    const card = `
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">${j.namaPasien}</h5>
+                <p class="card-text mb-1"><strong>Waktu:</strong> ${j.waktu}</p>
+                <p class="card-text mb-1"><strong>Jenis Konsultasi:</strong> ${j.jenis}</p>
+                <p class="card-text mb-1"><strong>Keluhan:</strong> ${j.keluhan}</p>
+                <p class="card-text"><strong>Status:</strong> <span class="badge badge-warning">${j.status}</span></p>
+              </div>
+            </div>`;
+                    container.innerHTML += card;
+                });
+            } else {
+                container.innerHTML = `<div class="alert alert-info">Tidak ada jadwal konsultasi hari ini.</div>`;
+            }
+        });
+    </script>
+</body>
+
+</html>
