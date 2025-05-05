@@ -36,8 +36,7 @@
       <p class="menu-header">Menu Utama</p>
       <a href="jadwal.html" class="active"><i class="fas fa-calendar-alt"></i><span>Manajemen Jadwal</span></a>
       <a href="janji-temu.html"><i class="fas fa-handshake"></i><span>Janji Temu</span></a>
-      <a href="admin-dokter.html"><i class="fas fa-user-md"></i> <span>Data Dokter</span></a>
-      <a href="#"><i class="fas fa-users"></i> <span>Data Pasien</span></a>
+      <a href="manage-pengguna.html"><i class="fas fa-users"></i> <span>Manajemen Pengguna</span></a>
       
       <p class="menu-header">Rekam & Keuangan</p>
       <a href="#"><i class="fas fa-notes-medical"></i> <span>Rekam Medis</span></a>
@@ -292,6 +291,76 @@
           </div>
         </div>
       </div>
+
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th>Nama Dokter</th>
+                  <th>Spesialis</th>
+                  <th>Hari</th>
+                  <th>Jam</th>
+                  <th>Status</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>Dr. Andi Wijaya</td>
+                    <td>Umum</td>
+                    <td>Senin</td>
+                    <td>08:00 - 14:00</td>
+                    <td>
+                      <span class="status-badge status-pending">Menunggu</span>
+                    </td>
+                    <td>
+                      <select class="form-select form-select-sm status-select" onchange="updateStatus(this)">
+                        <option value="confirmed">Dikonfirmasi</option>
+                        <option value="pending" selected>Menunggu</option>
+                        <option value="cancelled">Dibatalkan</option>
+                      </select>
+                    </td>
+                  </tr>
+                
+                  <td>Dr. Rina Lestari</td>
+                  <td>Anak</td>
+                  <td>Selasa</td>
+                  <td>09:00 - 13:00</td>
+                  <td>
+                    <span class="status-badge status-confirmed">Dikonfirmasi</span>
+                  </td>
+                  <td>
+                    <select class="form-select form-select-sm status-select" onchange="updateStatus(this)">
+                      <option value="confirmed" selected>Dikonfirmasi</option>
+                      <option value="pending">Menunggu</option>
+                      <option value="cancelled">Dibatalkan</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Dr. Budi Santoso</td>
+                  <td>Gigi</td>
+                  <td>Jumat</td>
+                  <td>10:00 - 15:00</td>
+                  <td>
+                    <span class="status-badge status-cancelled">Dibatalkan</span>
+                  </td>
+                  <td>
+                    <select class="form-select form-select-sm status-select" onchange="updateStatus(this)">
+                      <option value="confirmed">Dikonfirmasi</option>
+                      <option value="pending">Menunggu</option>
+                      <option value="cancelled" selected>Dibatalkan</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
     </div>
   </main>
 
@@ -451,89 +520,6 @@
     </div>
   </div>
 
-  <!-- Add Appointment Modal -->
-  <div class="modal fade" id="addAppointmentModal" tabindex="-1" aria-labelledby="addAppointmentModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addAppointmentModalLabel">Tambah Janji Temu</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label for="patientSelect" class="form-label">Pasien</label>
-                <select class="form-select" id="patientSelect" required>
-                  <option value="" selected disabled>Pilih Pasien</option>
-                  <option value="1">Ahmad Fauzi (P-00123)</option>
-                  <option value="2">Rina Lestari (P-00456)</option>
-                  <option value="3">Budi Prasetyo (P-00789)</option>
-                  <option value="4">Sarah Kusuma (P-00234)</option>
-                  <option value="5">Deni Setiawan (P-00567)</option>
-                </select>
-              </div>
-              <div class="col-md-6">
-                <label for="doctorAppointmentSelect" class="form-label">Dokter</label>
-                <select class="form-select" id="doctorAppointmentSelect" required>
-                  <option value="" selected disabled>Pilih Dokter</option>
-                  <option value="1">Dr. Andi Wijaya - Dokter Umum</option>
-                  <option value="2">Dr. Siti Rahma - Dokter Gigi</option>
-                  <option value="3">Dr. Budi Santoso - Dokter Anak</option>
-                  <option value="4">Dr. Dewi Anggraini - Dokter Jantung</option>
-                  <option value="5">Dr. Rudi Hartono - Dokter Mata</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label for="appointmentDate" class="form-label">Tanggal</label>
-                <input type="date" class="form-control" id="appointmentDate" required>
-              </div>
-              <div class="col-md-6">
-                <label for="appointmentTime" class="form-label">Waktu</label>
-                <input type="time" class="form-control" id="appointmentTime" required>
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label for="appointmentType" class="form-label">Jenis Kunjungan</label>
-                <select class="form-select" id="appointmentType" required>
-                  <option value="" selected disabled>Pilih Jenis</option>
-                  <option value="1">Konsultasi</option>
-                  <option value="2">Pemeriksaan Umum</option>
-                  <option value="3">Kontrol Rutin</option>
-                  <option value="4">Tindakan Medis</option>
-                  <option value="5">Lainnya</option>
-                </select>
-              </div>
-              <div class="col-md-6">
-                <label for="appointmentStatus" class="form-label">Status</label>
-                <select class="form-select" id="appointmentStatus" required>
-                  <option value="pending" selected>Menunggu</option>
-                  <option value="confirmed">Terkonfirmasi</option>
-                  <option value="completed">Selesai</option>
-                  <option value="cancelled">Dibatalkan</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="appointmentNotes" class="form-label">Keluhan / Catatan</label>
-              <textarea class="form-control" id="appointmentNotes" rows="3" placeholder="Deskripsikan keluhan pasien atau catatan untuk dokter"></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-          <button type="button" class="btn btn-primary">Simpan Janji Temu</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div id="modalForm" class="modal" style="display:none;">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -612,6 +598,24 @@
       modal.style.display = 'none';
       form.reset();
     });
+
+    function updateStatus(select) {
+      const selectedValue = select.value;
+      const badge = select.closest('tr').querySelector('.status-badge');
+  
+      badge.classList.remove('status-confirmed', 'status-pending', 'status-cancelled');
+  
+      if (selectedValue === 'confirmed') {
+        badge.classList.add('status-confirmed');
+        badge.innerText = 'Dikonfirmasi';
+      } else if (selectedValue === 'pending') {
+        badge.classList.add('status-pending');
+        badge.innerText = 'Menunggu';
+      } else if (selectedValue === 'cancelled') {
+        badge.classList.add('status-cancelled');
+        badge.innerText = 'Dibatalkan';
+      }
+    }
   </script>
 </body>
 </html>
