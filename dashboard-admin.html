@@ -24,15 +24,7 @@
           <div>
             <h6 class="mb-0 fw-bold">Admin Utama</h6>
             <small>Administrator</small>
-          </div>
-          
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profil</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Pengaturan</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Keluar</a></li>
-          </ul>
-        </div>
+          </div>            
       </div>
     </div>
   </nav>
@@ -42,8 +34,7 @@
     <div class="sidebar-menu">
       <p class="menu-header">Menu Utama</p>
       <a href="jadwal.html"><i class="fas fa-calendar-alt"></i><span>Manajemen Jadwal</span></a>
-      <a href="#"><i class="fas fa-handshake"></i><span>Janji Temu</span></a>
-      <a href="#"><i class="fas fa-user-md"></i> <span>Data Dokter</span></a>
+      <a href="janji-temu.html"><i class="fas fa-handshake"></i><span>Janji Temu</span></a>
       <a href="#"><i class="fas fa-users"></i> <span>Data Pasien</span></a>
       
       <p class="menu-header">Rekam & Keuangan</p>
@@ -115,9 +106,9 @@
 
     <!-- Jadwal Dokter -->
     <div class="row mb-4">
-      <div class="col-md-12 col-xl-6 mb-4">
+      <div class="col-12 mb-4">
         <div class="card h-100">
-          <div class="card-header">
+          <div class="card-header d-flex justify-content-between align-items-center">
             <span>Jadwal Dokter</span>
             <a href="jadwal.html">
               <button class="btn btn-sm btn-primary">Lihat Semua</button>
@@ -189,11 +180,13 @@
       </div>
 
       <!-- Janji Temu -->
-      <div class="col-md-12 col-xl-6 mb-4">
+      <div class="col-12 mb-4">
         <div class="card h-100">
-          <div class="card-header">
+          <div class="card-header d-flex justify-content-between align-items-center">
             <span>Jadwal Janji Temu Hari Ini</span>
-            <button class="btn btn-sm btn-primary">Lihat Semua</button>
+            <a href="janji-temu.html">
+              <button class="btn btn-sm btn-primary">Lihat Semua</button>
+            </a>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -204,7 +197,6 @@
                     <th>Dokter</th>
                     <th>Waktu</th>
                     <th>Status</th>
-                    <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -221,18 +213,6 @@
                     <td>Dr. Andi Wijaya</td>
                     <td>09:00 WIB</td>
                     <td><span class="status-badge status-confirmed">Terkonfirmasi</span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                          Aksi
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i> Edit</a></li>
-                          <li><a class="dropdown-item" href="#"><i class="fas fa-check-circle me-2"></i> Selesai</a></li>
-                          <li><a class="dropdown-item" href="#"><i class="fas fa-times-circle me-2"></i> Batalkan</a></li>
-                        </ul>
-                      </div>
-                    </td>
                   </tr>
                   <tr>
                     <td>
@@ -246,19 +226,7 @@
                     </td>
                     <td>Dr. Siti Rahma</td>
                     <td>14:00 WIB</td>
-                    <td><span class="status-badge status-pending">Menunggu</span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                          Aksi
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i> Edit</a></li>
-                          <li><a class="dropdown-item" href="#"><i class="fas fa-check-circle me-2"></i> Konfirmasi</a></li>
-                          <li><a class="dropdown-item" href="#"><i class="fas fa-times-circle me-2"></i> Batalkan</a></li>
-                        </ul>
-                      </div>
-                    </td>
+                    <td><span class="status-badge status-pending">Menunggu</span></td>                    
                   </tr>
                   <tr>
                     <td>
@@ -272,18 +240,7 @@
                     </td>
                     <td>Dr. Budi Santoso</td>
                     <td>11:30 WIB</td>
-                    <td><span class="status-badge status-cancelled">Dibatalkan</span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                          Aksi
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i> Edit</a></li>
-                          <li><a class="dropdown-item" href="#"><i class="fas fa-redo me-2"></i> Jadwalkan Ulang</a></li>
-                        </ul>
-                      </div>
-                    </td>
+                    <td><span class="status-badge status-cancelled">Dibatalkan</span></td>                    
                   </tr>
                 </tbody>
               </table>
