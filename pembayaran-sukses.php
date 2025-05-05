@@ -42,7 +42,7 @@ try {
         </ul>
 
         <div class="text-center">
-            <a href="index.php" class="btn btn-primary">Kembali ke Beranda</a>
+            <a href="user-dashboard.html" class="btn btn-primary">Selanjutnya</a>
         </div>
     </div>
 </div>
