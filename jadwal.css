@@ -133,11 +133,6 @@ table thead th {
     color: gray;
 }
 
-.footer a {
-    color: var(--primary-color);
-    text-decoration: none;
-}
-
 .border-left-primary {
     border-left: 4px solid var(--primary-color);
 }

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Janji Temu - Sistem Rumah Sakit</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" type="text/css" href="jadwal.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="dashboard-admin.html">
+        <i class="fas fa-hospital"></i>
+        <span>Sistem Rumah Sakit</span>
+      </a>
+      
+      <div class="ms-auto d-flex align-items-center">
+        <div class="dropdown">
+          <a class="d-flex align-items-center text-decoration-none text-black dropdown-toggle" role="button" id="adminDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="text-end me-2">
+              <h6 class="mb-0 fw-bold">Admin Utama</h6>
+              <small>Administrator</small>
+            </div>            
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
+            <li><a class="dropdown-item text-danger"><i class="fas fa-sign-out-alt me-2"></i>Keluar</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-menu">
+      <p class="menu-header">Menu Utama</p>
+      <a href="jadwal.html"><i class="fas fa-calendar-alt"></i><span>Manajemen Jadwal</span></a>
+      <a href="janji-temu.html"><i class="fas fa-handshake"></i><span>Janji Temu</span></a>
+      <a href="manage-pengguna.html"><i class="fas fa-users"></i> <span>Manajemen Pengguna</span></a>
+      
+      <p class="menu-header">Rekam & Keuangan</p>
+      <a href="#"><i class="fas fa-notes-medical"></i> <span>Rekam Medis</span></a>
+      <a href="#"><i class="fas fa-stethoscope"></i> <span>Pemeriksaan</span></a>
+      <a href="#"><i class="fas fa-credit-card"></i> <span>Pembayaran</span></a>    
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container-fluid">
+      <h3 class="mb-4">Manajemen Janji Temu</h1>
+      <!-- Status Cards -->
+      <div class="row mb-4">
+        <div class="col-xl-4 col-md-6">
+          <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                    Dikonfirmasi</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-solid fa-check fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4 col-md-6">
+          <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                    Menunggu</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-clock fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4 col-md-6">
+          <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                    Dibatalkan</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-times-circle fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Tabel Janji Temu -->
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table align-middle">
+              <thead>
+                <tr>
+                  <th>Pasien</th>
+                  <th>Dokter</th>
+                  <th>Waktu</th>
+                  <th>Status</th>
+                  <th style="text-align: center; vertical-align: middle;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="avatar-info">
+                      <img src="Assets/doctor2.jpg" alt="Ahmad Fauzi" class="avatar">
+                      <div class="info">
+                        <h6>Ahmad Fauzi</h6>
+                        <p>P-00123</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Dr. Andi Wijaya</td>
+                  <td>09:00 WIB</td>
+                  <td><span class="status-badge status-confirmed">Dikonfirmasi</span></td>
+                  <td>
+                    <select class="form-select form-select-sm status-select" onchange="updateStatus(this)">
+                      <option value="confirmed" selected>Dikonfirmasi</option>
+                      <option value="pending">Menunggu</option>
+                      <option value="cancelled">Dibatalkan</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="avatar-info">
+                      <img src="Assets/doctor3.jpg" alt="Rina Lestari" class="avatar">
+                      <div class="info">
+                        <h6>Rina Lestari</h6>
+                        <p>P-00456</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Dr. Siti Rahma</td>
+                  <td>14:00 WIB</td>
+                  <td><span class="status-badge status-pending">Menunggu</span></td>
+                  <td>
+                    <select class="form-select form-select-sm status-select" onchange="updateStatus(this)">
+                      <option value="confirmed">Dikonfirmasi</option>
+                      <option value="pending" selected>Menunggu</option>
+                      <option value="cancelled">Dibatalkan</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="avatar-info">
+                      <img src="Assets/doctor1.jpg" alt="Budi Prasetyo" class="avatar">
+                      <div class="info">
+                        <h6>Budi Prasetyo</h6>
+                        <p>P-00789</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Dr. Budi Santoso</td>
+                  <td>11:30 WIB</td>
+                  <td><span class="status-badge status-cancelled">Dibatalkan</span></td>
+                  <td>
+                    <select class="form-select form-select-sm status-select" onchange="updateStatus(this)">
+                      <option value="confirmed">Dikonfirmasi</option>
+                      <option value="pending">Menunggu</option>
+                      <option value="cancelled" selected>Dibatalkan</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="avatar-info">
+                      <img src="Assets/doctor3.jpg" alt="Budi Prasetyo" class="avatar">
+                      <div class="info">
+                        <h6>Sinta Wijaya</h6>
+                        <p>P-00743</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Dr. Anaya Putri</td>
+                  <td>11:30 WIB</td>
+                  <td><span class="status-badge status-cancelled">Dibatalkan</span></td>
+                  <td>
+                    <select class="form-select form-select-sm status-select" onchange="updateStatus(this)">
+                      <option value="confirmed">Dikonfirmasi</option>
+                      <option value="pending">Menunggu</option>
+                      <option value="cancelled" selected>Dibatalkan</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </main>
+
+  <script>
+    function updateStatus(select) {
+      const selectedValue = select.value;
+      const badge = select.closest('tr').querySelector('.status-badge');
+  
+      badge.classList.remove('status-confirmed', 'status-pending', 'status-cancelled');
+  
+      if (selectedValue === 'confirmed') {
+        badge.classList.add('status-confirmed');
+        badge.innerText = 'Dikonfirmasi';
+      } else if (selectedValue === 'pending') {
+        badge.classList.add('status-pending');
+        badge.innerText = 'Menunggu';
+      } else if (selectedValue === 'cancelled') {
+        badge.classList.add('status-cancelled');
+        badge.innerText = 'Dibatalkan';
+      }
+    }
+  </script>
+</body>
+</html>
