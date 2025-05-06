@@ -1,143 +1,79 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <title>Jadwal Dokter</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jadwal Praktik Mingguan</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="admin.css">
   <style>
     body {
-      background-color: #f4f6fb;
+      background-color: #f5f7fa;
       font-family: 'Segoe UI', sans-serif;
     }
-    .title {
-      color: #0d6efd;
-      font-weight: 600;
-    }
-    .schedule-box {
-      border-left: 4px solid #0d6efd;
+    .card-day {
+      border-radius: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
       background: #fff;
-      padding: 1rem;
-      border-radius: 10px;
+      padding: 1rem 1.2rem;
       margin-bottom: 1rem;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
     }
-    .schedule-box h6 {
-      margin-bottom: 4px;
+    .day-header {
+      font-size: 1.1rem;
       font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #0d6efd;
     }
-    .schedule-box .time,
-    .schedule-box .location {
-      font-size: 0.9rem;
-      color: #555;
+    .session-item {
+      border-left: 4px solid #0d6efd;
+      padding-left: 10px;
+      margin-bottom: 0.75rem;
     }
-    .btn-primary {
-      background-color: #0d6efd;
-      border: none;
-      font-weight: 500;
-      font-size: 0.9rem;
+    .session-time {
+      font-weight: 600;
+      color: #333;
     }
-    .btn-primary:hover {
-      background-color: #0b5ed7;
+    .session-info {
+      font-size: 0.95rem;
+      color: #666;
     }
-
-    :root {
-      --sidebar-width: 280px;
+    .icon {
+      font-size: 1rem;
+      margin-right: 5px;
     }
-
-    .content {
-      margin-left: 280px;
-      padding-top: 200px;
-    }
-
-    .main-content {
-        padding-top: 100px; /* sesuaikan dengan tinggi navbar */
-    }
-    .navbar {
-      background-color: white;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-      height: 70px;
-      padding: 0 20px;
-    }
-
-    .sidebar {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        width: var(--sidebar-width);
-        background: var(--dark-color);
-        color: white;
-        padding-top: 75px;
-        overflow-y: auto;
-    }
-
-    .sidebar-menu {
-        padding: 0 1rem;
-    }
-
-    .menu-header {
-        text-transform: uppercase;
-        font-size: 0.75rem;
-        color: grey;
-        margin: 1.5rem 0;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-    }
-
-    .sidebar a {
-        color: rgba(255, 255, 255, 0.7);
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        padding: 0.8rem 1rem;
-        border-radius: 10px;
-        margin-bottom: 5px;
-    }
-
-    .sidebar a:hover, .sidebar a.active {
-        color: white;
-    }
-
-    .sidebar a i {
-        margin-right: 12px;
-        width: 20px;
-        text-align: center;
-    }
-
   </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container-fluid">
-        <a class="navbar-brand" href="dashboard-dokter.html">      
-            <img src="Assets/VitaNova.png" alt="VitaNova" class="logo">
-        </a>
-        
-        <div class="ms-auto d-flex align-items-center">
-            <div class="dropdown">
-                <a class="d-flex align-items-center text-decoration-none text-black dropdown-toggle" role="button" id="adminDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <div class="text-end me-2">
-                    <h6 class="mb-0 fw-bold">Dr. Budi Santoso</h6>
-                    <small>Dokter Anak</small>
-                    </div>            
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
-                    <li><a class="dropdown-item text-danger"><i class="fas fa-sign-out-alt me-2"></i>Keluar</a></li>
-                </ul>
-            </div>
+    <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+    <a class="navbar-brand" href="dashboard-dokter.html">      
+        <img src="Assets/VitaNova.png" alt="VitaNova" class="logo">
+    </a>
+    
+    <div class="ms-auto d-flex align-items-center">
+        <div class="dropdown">
+            <a class="d-flex align-items-center text-decoration-none text-black dropdown-toggle" role="button" id="adminDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="text-end me-2">
+                <h6 class="mb-0 fw-bold">Dr. Budi Santoso</h6>
+                <small>Dokter Anak</small>
+                </div>            
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
+                <li><a class="dropdown-item text-danger"><i class="fas fa-sign-out-alt me-2"></i>Keluar</a></li>
+            </ul>
         </div>
-        </div>
-       </nav>
-  
-    <!-- Sidebar -->
+    </div>
+    </div>
+   </nav>
+
+  <!-- Sidebar -->
   <aside class="sidebar">
     <div class="sidebar-menu">
     <p class="menu-header">Menu Utama</p>
-    <a href="#"  class="active"><i class="fas fa-calendar-alt"></i><span>Jadwal Praktek</span></a>
+    <a href="#" class="active"><i class="fas fa-calendar-alt"></i><span>Jadwal Praktek</span></a>
     <a href="#"><i class="fas fa-handshake"></i><span>Janji Temu</span></a>        
     
     <p class="menu-header">Pasien</p>
@@ -146,90 +82,139 @@
     <a href="dokter-resep-obat.html"><i class="fa-solid fa-pills"></i><span>Resep Obat</span></a>       
     </div>
   </aside>
-  <div class="container my-5" style="max-width: 600px;">
-    <div class="text-center mb-4" style ="margin-top: 100px;">
-      <h4 class="title">Jadwal Praktek</h4>
-      <p class="text-muted mb-1">Dr. Budi Santoso</p>
-      <button class="btn btn-sm btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#jadwalModal">
-        <i class="bi bi-plus-lg me-1"></i>Tambah Jadwal
-      </button>
-    </div>
 
-    <!-- Jadwal -->
-    <div id="jadwalContainer">
-      <div class="schedule-box">
-        <h6>Senin</h6>
-        <div class="time"><i class="bi bi-clock me-1"></i>09:00 - 12:00</div>
-        <div class="location"><i class="bi bi-geo-alt me-1"></i>Klinik Utama</div>
+
+<div class="container py-4" style="margin-left: 400px;">
+  <h3 class="mb-4 fw-semibold text-center " style="margin-top: 100px;">Jadwal Praktek  - Dr. Budi Santoso</h3>
+
+  <!-- Tombol untuk Tambah Jadwal -->
+  <div class="text-center mb-3">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahJadwalModal">
+      <i class="bi bi-plus-circle"></i> Tambah Jadwal
+    </button>
+  </div>
+
+  <!-- Senin -->
+  <div class="card-day">
+    <div class="day-header"><i class="bi bi-calendar-week icon text-primary"></i>Senin</div>
+    <div class="session-item">
+      <div class="session-time">08:00 - 10:00</div>
+      <div class="session-info"><i class="bi bi-hospital icon"></i>Poli Anak | Ruang 201</div>
+    </div>
+    <div class="session-item">
+      <div class="session-time">10:30 - 12:00</div>
+      <div class="session-info"><i class="bi bi-chat-left-text icon"></i>Konsultasi Umum | Ruang 203</div>
+    </div>
+    <div class="session-item">
+        <div class="session-time">13:00 - 15:00</div>
+        <div class="session-info"><i class="bi bi-file-earmark-medical icon"></i>Pemeriksaan Lanjutan | Ruang 205</div>
       </div>
-      <div class="schedule-box">
-        <h6>Rabu</h6>
-        <div class="time"><i class="bi bi-clock me-1"></i>13:00 - 16:00</div>
-        <div class="location"><i class="bi bi-geo-alt me-1"></i>Klinik Anak</div>
-      </div>
-      <div class="schedule-box">
-        <h6>Jumat</h6>
-        <div class="time"><i class="bi bi-clock me-1"></i>08:00 - 11:00</div>
-        <div class="location"><i class="bi bi-geo-alt me-1"></i>Klinik Umum</div>
-      </div>
+  </div>
+
+  <!-- Selasa -->
+  <div class="card-day">
+    <div class="day-header"><i class="bi bi-calendar-week icon text-success"></i>Selasa</div>
+    <div class="session-item">
+      <div class="session-time">09:00 - 11:00</div>
+      <div class="session-info"><i class="bi bi-activity icon"></i>Fisioterapi | Ruang 204</div>
     </div>
   </div>
 
+  <!-- Rabu -->
+  <div class="card-day">
+    <div class="day-header"><i class="bi bi-calendar-week icon text-danger"></i>Rabu</div>
+    <div class="session-item">
+      <div class="session-time">13:00 - 15:00</div>
+      <div class="session-info"><i class="bi bi-file-earmark-medical icon"></i>Pemeriksaan Anak | Ruang 202</div>
+    </div>
+  </div>
+
+  <!-- Kamis -->
+  <div class="card-day">
+    <div class="day-header"><i class="bi bi-calendar-week icon text-warning"></i>Kamis</div>
+    <div class="session-item">
+      <div class="session-time">08:00 - 09:30</div>
+      <div class="session-info"><i class="bi bi-thermometer-snow icon"></i>Vaksinasi | Ruang 206</div>
+    </div>
+    <div class="session-item">
+      <div class="session-time">10:00 - 11:30</div>
+      <div class="session-info"><i class="bi bi-chat-square-dots icon"></i>Konseling Kesehatan | Ruang 209</div>
+    </div>
+    <div class="session-item">
+      <div class="session-time">13:00 - 15:00</div>
+      <div class="session-info"><i class="bi bi-file-earmark-medical icon"></i>Pemeriksaan Lanjutan | Ruang 205</div>
+    </div>
+  </div>
+
+  <!-- Jumat -->
+  <div class="card-day">
+    <div class="day-header"><i class="bi bi-calendar-week icon text-info"></i>Jumat</div>
+    <div class="session-item">
+      <div class="session-time">07:30 - 09:00</div>
+      <div class="session-info"><i class="bi bi-person-check icon"></i>Check-up Rutin | Ruang 208</div>
+    </div>
+  </div>
+
+  <!-- Sabtu -->
+  <div class="card-day">
+    <div class="day-header"><i class="bi bi-calendar-week icon text-secondary"></i>Sabtu</div>
+    <div class="session-item">
+      <div class="session-time">09:00 - 11:00</div>
+      <div class="session-info"><i class="bi bi-hospital icon"></i>Poli Umum | Ruang 210</div>
+    </div>
+  </div>
+
+  <!-- Minggu -->
+  <div class="card-day">
+    <div class="day-header"><i class="bi bi-calendar-x icon text-muted"></i>Minggu</div>
+    <div class="text-muted">Tidak ada jadwal praktik.</div>
+  </div>
   <!-- Modal Tambah Jadwal -->
-  <div class="modal fade" id="jadwalModal" tabindex="-1" aria-labelledby="jadwalModalLabel" aria-hidden="true">
+  <div class="modal fade" id="tambahJadwalModal" tabindex="-1" aria-labelledby="tambahJadwalModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <form id="formJadwal" class="modal-content">
+      <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="jadwalModalLabel">Tambah Jadwal Baru</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+          <h5 class="modal-title" id="tambahJadwalModalLabel">Tambah Jadwal Baru</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-3">
-            <label class="form-label">Hari</label>
-            <input type="text" class="form-control" id="inputHari" required />
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Jam</label>
-            <input type="text" class="form-control" id="inputJam" required />
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Lokasi</label>
-            <input type="text" class="form-control" id="inputLokasi" required />
-          </div>
+          <form id="formTambahJadwal">
+            <div class="mb-3">
+              <label for="hari" class="form-label">Hari</label>
+              <select class="form-select" id="hari" required>
+                <option value="Senin">Senin</option>
+                <option value="Selasa">Selasa</option>
+                <option value="Rabu">Rabu</option>
+                <option value="Kamis">Kamis</option>
+                <option value="Jumat">Jumat</option>
+                <option value="Sabtu">Sabtu</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="waktu" class="form-label">Waktu</label>
+              <input type="text" class="form-control" id="waktu" placeholder="Contoh: 08:00 - 10:00" required>
+            </div>
+            <div class="mb-3">
+              <label for="deskripsi" class="form-label">Deskripsi</label>
+              <input type="text" class="form-control" id="deskripsi" placeholder="Contoh: Poli Anak | Ruang 201" required>
+            </div>
+            <div class="mb-3">
+              <label for="ruang" class="form-label">Ruang</label>
+              <input type="text" class="form-control" id="ruang" placeholder="Contoh: Ruang 201" required>
+            </div>
+          </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-          <button type="submit" class="btn btn-primary">Simpan</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-primary" form="formTambahJadwal">Simpan Jadwal</button>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    const form = document.getElementById('formJadwal');
-    const jadwalContainer = document.getElementById('jadwalContainer');
 
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
+</div>
 
-      const hari = document.getElementById('inputHari').value;
-      const jam = document.getElementById('inputJam').value;
-      const lokasi = document.getElementById('inputLokasi').value;
-
-      const jadwalBaru = document.createElement('div');
-      jadwalBaru.className = 'schedule-box';
-      jadwalBaru.innerHTML = `
-        <h6>${hari}</h6>
-        <div class="time"><i class="bi bi-clock me-1"></i>${jam}</div>
-        <div class="location"><i class="bi bi-geo-alt me-1"></i>${lokasi}</div>
-      `;
-
-      jadwalContainer.appendChild(jadwalBaru);
-      const modal = bootstrap.Modal.getInstance(document.getElementById('jadwalModal'));
-      modal.hide();
-      form.reset();
-    });
-  </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
