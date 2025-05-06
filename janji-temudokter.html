@@ -13,6 +13,9 @@
       background-color: #f1f3f5;
       font-family: 'Segoe UI', sans-serif;
     }
+    .main-content {
+      margin-left: 280px;
+    }
     .card-summary {
       border-radius: 12px;
       padding: 1rem;
@@ -55,177 +58,182 @@
   <aside class="sidebar">
     <div class="sidebar-menu">
     <p class="menu-header">Menu Utama</p>
-    <a href="manajemen-jadwal.html" ><i class="fas fa-calendar-alt"></i><span>Jadwal Praktek</span></a>
-    <a href="#" class="active"><i class="fas fa-handshake"></i><span>Janji Temu</span></a>        
+    <a href="manajemen-jadwal.html"><i class="fas fa-calendar-alt"></i><span>Jadwal Praktek</span></a>
+    <a href="janji-temudokter.html" class="active"><i class="fas fa-handshake"></i><span>Janji Temu</span></a>        
     
     <p class="menu-header">Pasien</p>
     <a href="dokter-rekam-medis.html"><i class="fas fa-notes-medical"></i> <span>Rekam Medis</span></a>
-    <a href="modul-pemeriksaan.html" ><i class="fas fa-stethoscope"></i><span>Pemeriksaan</span></a>
+    <a href="modul-pemeriksaan.html"><i class="fas fa-stethoscope"></i><span>Pemeriksaan</span></a>
     <a href="dokter-resep-obat.html"><i class="fa-solid fa-pills"></i><span>Resep Obat</span></a>       
     </div>
-  </aside>
-<div class="container py-4" style="margin-left: 400px;">
-  <h2 class="mb-4 fw-bold" style="margin-top: 100px;">Dashboard Janji Temu - Dr. Budi Santoso</h2>
+</aside>
 
-  <!-- Ringkasan Statistik -->
-  <div class="row mb-4">
-    <div class="col-md-4">
-      <div class="card-summary bg-primary text-white">
-        <div class="d-flex justify-content-between">
-          <div>
-            <div class="fs-5">Total Janji Hari Ini</div>
-            <div class="fs-3 fw-bold">8</div>
-          </div>
-          <div><i class="bi bi-calendar-event fs-1"></i></div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card-summary bg-success text-white">
-        <div class="d-flex justify-content-between">
-          <div>
-            <div class="fs-5">Selesai</div>
-            <div class="fs-3 fw-bold">5</div>
-          </div>
-          <div><i class="bi bi-check-circle fs-1"></i></div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card-summary bg-warning text-dark">
-        <div class="d-flex justify-content-between">
-          <div>
-            <div class="fs-5">Menunggu</div>
-            <div class="fs-3 fw-bold">3</div>
-          </div>
-          <div><i class="bi bi-hourglass-split fs-1"></i></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h5 class="fw-semibold" >Daftar Janji Temu Hari Ini</h5>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahJanji">
-      <i class="bi bi-plus-circle me-1"></i> Buat Janji Temu
-    </button>
-  </div>
-  <!-- Daftar Janji Temu -->
-  <div class="card mb-3">
-    <div class="card-header bg-light fw-semibold" >Daftar Janji Temu Hari Ini</div>
-    <div class="card-body p-0">
-      <table class="table table-hover m-0">
-        <thead class="table-light">
-          <tr>
-            <th>Pasien</th>
-            <th>Waktu</th>
-            <th>Layanan</th>
-            <th>Status</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Menunggu -->
-          <tr>
-            <td>Ahmad Fauzi</td>
-            <td>09:00</td>
-            <td>Konsultasi Anak</td>
-            <td><span class="badge bg-warning text-dark">Menunggu</span></td>
-            <td><button class="btn btn-sm btn-outline-primary">Detail</button></td>
-          </tr>
-          <tr>
-            <td>Budi Prasetyo</td>
-            <td>10:30</td>
-            <td>Vaksinasi</td>
-            <td><span class="badge bg-warning text-dark">Menunggu</span></td>
-            <td><button class="btn btn-sm btn-outline-primary">Detail</button></td>
-          </tr>
-          <tr>
-            <td>Lina Agustin</td>
-            <td>11:00</td>
-            <td>Check-up</td>
-            <td><span class="badge bg-warning text-dark">Menunggu</span></td>
-            <td><button class="btn btn-sm btn-outline-primary">Detail</button></td>
-          </tr>
+<main class="main-content">
 
-          <!-- Selesai -->
-          <tr>
-            <td>Siti Nurhaliza</td>
-            <td>07:30</td>
-            <td>Imunisasi</td>
-            <td><span class="badge bg-success">Selesai</span></td>
-            <td><button class="btn btn-sm btn-outline-primary">Detail</button></td>
-          </tr>
-          <tr>
-            <td>Rahmat Hidayat</td>
-            <td>08:00</td>
-            <td>Konsultasi Umum</td>
-            <td><span class="badge bg-success">Selesai</span></td>
-            <td><button class="btn btn-sm btn-outline-primary">Detail</button></td>
-          </tr>
-          <tr>
-            <td>Susan Lestari</td>
-            <td>08:30</td>
-            <td>Kontrol Berkala</td>
-            <td><span class="badge bg-success">Selesai</span></td>
-            <td><button class="btn btn-sm btn-outline-primary">Detail</button></td>
-          </tr>
-          <tr>
-            <td>Indra Wijaya</td>
-            <td>09:30</td>
-            <td>Pemeriksaan Anak</td>
-            <td><span class="badge bg-success">Selesai</span></td>
-            <td><button class="btn btn-sm btn-outline-primary">Detail</button></td>
-          </tr>
-          <tr>
-            <td>Maya Saputri</td>
-            <td>10:00</td>
-            <td>Konseling</td>
-            <td><span class="badge bg-success">Selesai</span></td>
-            <td><button class="btn btn-sm btn-outline-primary">Detail</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <!-- Modal Buat Janji Temu -->
-<div class="modal fade" id="modalTambahJanji" tabindex="-1" aria-labelledby="modalTambahJanjiLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <form class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalTambahJanjiLabel">Buat Janji Temu Baru</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="namaPasien" class="form-label">Nama Pasien</label>
-            <input type="text" class="form-control" id="namaPasien" required>
-          </div>
-          <div class="mb-3">
-            <label for="waktuJanji" class="form-label">Waktu</label>
-            <input type="time" class="form-control" id="waktuJanji" required>
-          </div>
-          <div class="mb-3">
-            <label for="layanan" class="form-label">Layanan</label>
-            <input type="text" class="form-control" id="layanan" required>
-          </div>
-          <div class="mb-3">
-            <label for="status" class="form-label">Status</label>
-            <select class="form-select" id="status" required>
-              <option value="Menunggu">Menunggu</option>
-              <option value="Selesai">Selesai</option>
-            </select>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Simpan</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-        </div>
-      </form>
-    </div>
-  </div>
+  <div class="container py-4">
+    <h2 class="mb-4 fw-bold">Dashboard Janji Temu - Dr. Budi Santoso</h2>
   
+    <!-- Ringkasan Statistik -->
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <div class="card-summary bg-primary text-white">
+          <div class="d-flex justify-content-between">
+            <div>
+              <div class="fs-5">Total Janji Hari Ini</div>
+              <div class="fs-3 fw-bold">8</div>
+            </div>
+            <div><i class="bi bi-calendar-event fs-1"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-summary bg-success text-white">
+          <div class="d-flex justify-content-between">
+            <div>
+              <div class="fs-5">Selesai</div>
+              <div class="fs-3 fw-bold">5</div>
+            </div>
+            <div><i class="bi bi-check-circle fs-1"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-summary bg-warning text-dark">
+          <div class="d-flex justify-content-between">
+            <div>
+              <div class="fs-5">Menunggu</div>
+              <div class="fs-3 fw-bold">3</div>
+            </div>
+            <div><i class="bi bi-hourglass-split fs-1"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="fw-semibold" >Daftar Janji Temu Hari Ini</h5>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahJanji">
+        <i class="bi bi-plus-circle me-1"></i> Buat Janji Temu
+      </button>
+    </div>
+    <!-- Daftar Janji Temu -->
+    <div class="card mb-3">
+      <div class="card-header bg-light fw-semibold" >Daftar Janji Temu Hari Ini</div>
+      <div class="card-body p-0">
+        <table class="table table-hover m-0">
+          <thead class="table-light">
+            <tr>
+              <th>Pasien</th>
+              <th>Waktu</th>
+              <th>Layanan</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Menunggu -->
+            <tr>
+              <td>Ahmad Fauzi</td>
+              <td>09:00</td>
+              <td>Konsultasi Anak</td>
+              <td><span class="badge bg-warning text-dark">Menunggu</span></td>
+              <td><button class="btn btn-sm btn-outline-primary">Detail</button></td>
+            </tr>
+            <tr>
+              <td>Budi Prasetyo</td>
+              <td>10:30</td>
+              <td>Vaksinasi</td>
+              <td><span class="badge bg-warning text-dark">Menunggu</span></td>
+              <td><button class="btn btn-sm btn-outline-primary">Detail</button></td>
+            </tr>
+            <tr>
+              <td>Lina Agustin</td>
+              <td>11:00</td>
+              <td>Check-up</td>
+              <td><span class="badge bg-warning text-dark">Menunggu</span></td>
+              <td><button class="btn btn-sm btn-outline-primary">Detail</button></td>
+            </tr>
+  
+            <!-- Selesai -->
+            <tr>
+              <td>Siti Nurhaliza</td>
+              <td>07:30</td>
+              <td>Imunisasi</td>
+              <td><span class="badge bg-success">Selesai</span></td>
+              <td><button class="btn btn-sm btn-outline-primary">Detail</button></td>
+            </tr>
+            <tr>
+              <td>Rahmat Hidayat</td>
+              <td>08:00</td>
+              <td>Konsultasi Umum</td>
+              <td><span class="badge bg-success">Selesai</span></td>
+              <td><button class="btn btn-sm btn-outline-primary">Detail</button></td>
+            </tr>
+            <tr>
+              <td>Susan Lestari</td>
+              <td>08:30</td>
+              <td>Kontrol Berkala</td>
+              <td><span class="badge bg-success">Selesai</span></td>
+              <td><button class="btn btn-sm btn-outline-primary">Detail</button></td>
+            </tr>
+            <tr>
+              <td>Indra Wijaya</td>
+              <td>09:30</td>
+              <td>Pemeriksaan Anak</td>
+              <td><span class="badge bg-success">Selesai</span></td>
+              <td><button class="btn btn-sm btn-outline-primary">Detail</button></td>
+            </tr>
+            <tr>
+              <td>Maya Saputri</td>
+              <td>10:00</td>
+              <td>Konseling</td>
+              <td><span class="badge bg-success">Selesai</span></td>
+              <td><button class="btn btn-sm btn-outline-primary">Detail</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Modal Buat Janji Temu -->
+  <div class="modal fade" id="modalTambahJanji" tabindex="-1" aria-labelledby="modalTambahJanjiLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <form class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTambahJanjiLabel">Buat Janji Temu Baru</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="namaPasien" class="form-label">Nama Pasien</label>
+              <input type="text" class="form-control" id="namaPasien" required>
+            </div>
+            <div class="mb-3">
+              <label for="waktuJanji" class="form-label">Waktu</label>
+              <input type="time" class="form-control" id="waktuJanji" required>
+            </div>
+            <div class="mb-3">
+              <label for="layanan" class="form-label">Layanan</label>
+              <input type="text" class="form-control" id="layanan" required>
+            </div>
+            <div class="mb-3">
+              <label for="status" class="form-label">Status</label>
+              <select class="form-select" id="status" required>
+                <option value="Menunggu">Menunggu</option>
+                <option value="Selesai">Selesai</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Simpan</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+  
+  </div>
+</main>
 
-</div>
 <script>
     const form = document.querySelector('.modal-content');
     form.addEventListener('submit', function(e) {
