@@ -22,6 +22,45 @@
 </head>
 <body>
 <div class="d-flex">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+    <a class="navbar-brand" href="dashboard-admin.html">      
+        <img src="Assets/VitaNova.png" alt="VitaNova" class="logo">
+    </a>
+    
+    <div class="ms-auto d-flex align-items-center">
+        <div class="dropdown">
+        <a class="d-flex align-items-center text-decoration-none text-black dropdown-toggle" role="button" id="adminDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="text-end me-2">
+            <h6 class="mb-0 fw-bold">Dr. Budi Santoso</h6>
+            <small>Dokter Anak</small>
+            </div>            
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
+            <li><a class="dropdown-item text-danger"><i class="fas fa-sign-out-alt me-2"></i>Keluar</a></li>
+        </ul>
+        </div>
+    </div>
+    </div>
+</nav>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+    <div class="sidebar-menu">
+    <p class="menu-header">Menu Utama</p>
+    <a href="jadwal.html"><i class="fas fa-calendar-alt"></i><span>Manajemen Jadwal</span></a>
+    <a href="janji-temu.html"><i class="fas fa-handshake"></i><span>Janji Temu</span></a>
+    <a href="manage-pengguna.html"><i class="fas fa-users"></i> <span>Manajemen Pengguna</span></a>
+    
+    <p class="menu-header">Rekam & Keuangan</p>
+    <a href="rekam-medis.html"><i class="fas fa-notes-medical"></i> <span>Rekam Medis</span></a>
+    <a href="modul-pemeriksaan.html"><i class="fas fa-stethoscope"></i><span>Pemeriksaan</span></a>
+    <a href="resep-obat.html"><i class="fa-solid fa-pills"></i><span>Resep Obat</span></a>
+    <a href="admin-pembayaran.html"><i class="fas fa-credit-card"></i> <span>Pembayaran</span></a>    
+    </div>
+</aside>
  
 
   <!-- Main Content -->
