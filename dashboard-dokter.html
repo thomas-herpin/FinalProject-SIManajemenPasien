@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Dashboard Dokter | SIMRS</title>
+    <title>Dashboard Dokter | VitaNova</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -14,168 +14,62 @@
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-info fixed-top">
-        <a class="navbar-brand text-white" href="#">Selamat datang Dokter | <b>Sistem Informasi Rumah Sakit</b></a>
+    <!DOCTYPE html>
+<html lang="en">
 
-        <form class="form-inline ml-auto">
-            <input class="form-control mr-2" type="search" placeholder="Search">
-            <button class="btn btn-outline-light" type="submit">Search</button>
-        </form>
-        <div class="icon ml-4">
-            <h5>
-                <i class="fa-solid fa-envelope mr-3" data-toggle="tooltip" title="Pesan"></i>
-                <a href="dokter-notifikasi.html" class="btn p-0 text-dark bg-transparent border-0"
-                    data-toggle="tooltip" title="Notifikasi">
-                    <i class="fa-solid fa-bell mr-3"></i>
-                </a>
-                <button id="logoutBtn" class="btn p-0 text-dark bg-transparent border-0" data-toggle="tooltip"
-                    title="Logout">
-                    <i class="fa-solid fa-right-from-bracket mr-3"></i>
-                </button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Admin - Sistem Rumah Sakit</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" type="text/css" href="admin.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="dashboard-admin.html">      
+            <img src="Assets/VitaNova.png" alt="VitaNova" class="logo">
+        </a>
+        
+        <div class="ms-auto d-flex align-items-center">
+            <div class="dropdown">
+            <a class="d-flex align-items-center text-decoration-none text-black dropdown-toggle" role="button" id="adminDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="text-end me-2">
+                <h6 class="mb-0 fw-bold">Dr. Budi Santoso</h6>
+                <small>Dokter Anak</small>
+                </div>            
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
+                <li><a class="dropdown-item text-danger"><i class="fas fa-sign-out-alt me-2"></i>Keluar</a></li>
+            </ul>
+            </div>
         </div>
         </div>
     </nav>
 
     <!-- Sidebar -->
-    <div class="row no-gutters mt-5">
-        <div class="col-md-2 bg-dark mt-2 pr-3 pt-4">
-            <ul class="nav flex-column ml-3 mb-5">
-                <li class="nav-item">
-                    <a class="nav-link active text-white" href="dashboard-dokter.html"><i
-                            class="fa-solid fa-table-columns mr-2"></i>Dashboard</a>
-                    <hr class="bg-secondary">
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="dokter-jadwal.html"><i
-                            class="fa-solid fa-calendar-days mr-2"></i>Jadwal
-                        Konsultasi</a>
-                    <hr class="bg-secondary">
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="dokter-pasien.html"><i
-                            class="fa-solid fa-hospital-user mr-2"></i>Pasien Saya</a>
-                    <hr class="bg-secondary">
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="dokter-laporan.html"><i
-                            class="fa-solid fa-chart-simple mr-2"></i>Laporan Jam Kerja</a>
-                    <hr class="bg-secondary">
-                </li>
-            </ul>
+    <aside class="sidebar">
+        <div class="sidebar-menu">
+        <p class="menu-header">Menu Utama</p>
+        <a href="jadwal.html"><i class="fas fa-calendar-alt"></i><span>Manajemen Jadwal</span></a>
+        <a href="janji-temu.html"><i class="fas fa-handshake"></i><span>Janji Temu</span></a>
+        <a href="manage-pengguna.html"><i class="fas fa-users"></i> <span>Manajemen Pengguna</span></a>
+        
+        <p class="menu-header">Rekam & Keuangan</p>
+        <a href="rekam-medis.html"><i class="fas fa-notes-medical"></i> <span>Rekam Medis</span></a>
+        <a href="periksa.html"><i class="fas fa-stethoscope"></i><span>Pemeriksaan</span></a>
+        <a href="resep-obat.html"><i class="fa-solid fa-pills"></i><span>Resep Obat</span></a>
+        <a href="admin-pembayaran.html"><i class="fas fa-credit-card"></i> <span>Pembayaran</span></a>    
         </div>
-        <div class="col-md-10 p-5 pt-2">
-            <h3><i class="fa-solid fa-table-columns mr-2"></i> DASHBOARD</h3>
-            <hr>
+    </aside>
 
-            <!-- Notifikasi Jadwal Hari Ini -->
-            <div class="alert alert-warning" id="notifikasiJadwal" style="display: none;">
-                <i class="fa-solid fa-bell mr-2"></i>
-                <span id="isiNotifikasi"></span>
-            </div>
+    <!-- Main Content -->
 
-
-            <!-- Card Dashboard -->
-            <div class="row text-white">
-                <div class="card bg-warning ml-4" style="width: 18rem;">
-                    <div class="card-body">
-                        <div class="card-body-icon">
-                            <i class="fa-solid fa-calendar-days mr-2"></i>
-                        </div>
-                        <h5 class="card-title">Jadwal Konsultasi</h5>
-                        <div class="display-4">800</div>
-                        <a href="">
-                            <p class="card-text text-white">Lihat Detail <i class="fa-solid fa-arrow-right ml-2"></i>
-                            </p>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card bg-success ml-4" style="width: 18rem;">
-                    <div class="card-body">
-                        <div class="card-body-icon">
-                            <i class="fa-solid fa-hospital-user mr-2"></i>
-                        </div>
-                        <h5 class="card-title">Pasien Saya</h5>
-                        <div class="display-4">60</div>
-                        <a href="">
-                            <p class="card-text text-white">Lihat Detail <i class="fa-solid fa-arrow-right ml-2"></i>
-                            </p>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card bg-primary ml-4" style="width: 18rem;">
-                    <div class="card-body">
-                        <div class="card-body-icon">
-                            <i class="fa-solid fa-chart-simple mr-2"></i>
-                        </div>
-                        <h5 class="card-title">Laporan Jam Kerja</h5>
-                        <div class="display-4">3.000</div>
-                        <a href="">
-                            <p class="card-text text-white">Lihat Detail <i class="fa-solid fa-arrow-right ml-2"></i>
-                            </p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Optional JavaScript -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Fungsi logout
-            const logoutBtn = document.getElementById("logoutBtn");
-            if (logoutBtn) {
-                logoutBtn.addEventListener("click", function (e) {
-                    e.preventDefault();
-                    window.location.href = "login.html";
-                });
-            }
-
-            // Notifikasi Jadwal
-            const jadwalHariIni = [
-                {
-                    namaPasien: "Jess Mariano",
-                    waktu: "09:00",
-                    tanggal: "2025-04-08"
-                },
-                {
-                    namaPasien: "Rory Gilmore",
-                    waktu: "11:30",
-                    tanggal: "2025-04-08"
-                }
-            ];
-
-            const today = new Date().toISOString().split("T")[0];
-            const jadwalHariIniAda = jadwalHariIni.filter(j => j.tanggal === today);
-
-            if (jadwalHariIniAda.length > 0) {
-                const pesan = jadwalHariIniAda
-                    .map(j => `pukul <strong>${j.waktu}</strong> dengan pasien <strong>${j.namaPasien}</strong>`)
-                    .join(", dan ");
-                const notifikasiBox = document.getElementById("notifikasiJadwal");
-                const isiNotifikasi = document.getElementById("isiNotifikasi");
-                if (notifikasiBox && isiNotifikasi) {
-                    notifikasiBox.style.display = "block";
-                    isiNotifikasi.innerHTML = `Anda memiliki jadwal konsultasi hari ini ${pesan}.`;
-                }
-            }
-        });
-    </script>
-
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    <script type="text/javascript" src="admin.js"></script>
+    
 </body>
-
 </html>
