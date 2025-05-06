@@ -16,41 +16,40 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="dashboard-admin.html">      
+    <a class="navbar-brand" href="dashboard-dokter.html">      
         <img src="Assets/VitaNova.png" alt="VitaNova" class="logo">
-      </a>
-      
-      <div class="ms-auto d-flex align-items-center">
+    </a>
+    
+    <div class="ms-auto d-flex align-items-center">
         <div class="dropdown">
-          <a class="d-flex align-items-center text-decoration-none text-black dropdown-toggle" role="button" id="adminDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-            <div class="text-end me-2">
-              <h6 class="mb-0 fw-bold">Admin Utama</h6>
-              <small>Administrator</small>
-            </div>            
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
-            <li><a class="dropdown-item text-danger"><i class="fas fa-sign-out-alt me-2"></i>Keluar</a></li>
-          </ul>
+            <a class="d-flex align-items-center text-decoration-none text-black dropdown-toggle" role="button" id="adminDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="text-end me-2">
+                <h6 class="mb-0 fw-bold">Dr. Budi Santoso</h6>
+                <small>Dokter Anak</small>
+                </div>            
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
+                <li><a class="dropdown-item text-danger"><i class="fas fa-sign-out-alt me-2"></i>Keluar</a></li>
+            </ul>
         </div>
-      </div>
     </div>
-  </nav>
+    </div>
+   </nav>
 
   <!-- Sidebar -->
   <aside class="sidebar">
     <div class="sidebar-menu">
-      <p class="menu-header">Menu Utama</p>
-      <a href="jadwal.html"><i class="fas fa-calendar-alt"></i><span>Manajemen Jadwal</span></a>
-      <a href="janji-temu.html"><i class="fas fa-handshake"></i><span>Janji Temu</span></a>
-      <a href="manage-pengguna.html"><i class="fas fa-users"></i> <span>Manajemen Pengguna</span></a>
-      
-      <p class="menu-header">Rekam & Keuangan</p>
-      <a href="rekam-medis.html" class="active"><i class="fas fa-notes-medical"></i> <span>Rekam Medis</span></a>
-      <a href="periksa.html"><i class="fas fa-stethoscope"></i><span>Pemeriksaan</span></a>
-      <a href="resep-obat.html"><i class="fa-solid fa-pills"></i><span>Resep Obat</span></a>
-      <a href="admin-pembayaran.html"><i class="fas fa-credit-card"></i> <span>Pembayaran</span></a>    
+    <p class="menu-header">Menu Utama</p>
+    <a href="#"><i class="fas fa-calendar-alt"></i><span>Jadwal Praktek</span></a>
+    <a href="#"><i class="fas fa-handshake"></i><span>Janji Temu</span></a>        
+    
+    <p class="menu-header">Pasien</p>
+    <a href="dokter-rekam-medis.html" class="active"><i class="fas fa-notes-medical"></i> <span>Rekam Medis</span></a>
+    <a href="modul-pemeriksaan.html"><i class="fas fa-stethoscope"></i><span>Pemeriksaan</span></a>
+    <a href="dokter-resep-obat.html"><i class="fa-solid fa-pills"></i><span>Resep Obat</span></a>       
     </div>
-  </aside>
+   </aside>
+
 
   <!-- Main Content -->
   <main>
@@ -113,20 +112,20 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>RM001</td>
+                  <td>RM009</td>
                   <td>
                     <div class="avatar-info">
                       <img src="Assets/doctor1.jpg" alt="Avatar" class="avatar">
                       <div class="info">
-                        <h6>Ahmad Wijaya</h6>
-                        <p>ID: P001</p>
+                        <h6>Gilbert Oktavianus</h6>
+                        <p>ID: P007</p>
                       </div>
                     </div>
                   </td>
-                  <td>05/04/2025</td>
-                  <td>65 kg</td>
-                  <td>120/80 mmHg</td>
-                  <td>Hipertensi Ringan</td>
+                  <td>04/05/2025</td>
+                  <td>69 kg</td>
+                  <td>122/80 mmHg</td>
+                  <td>Demam</td>
                   <td>
                     <div class="d-flex justify-content-center gap-2">
                       <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#viewRecordModal" data-id="RM001">
@@ -142,20 +141,20 @@
                   </td>                  
                 </tr>
                 <tr>
-                  <td>RM002</td>
+                  <td>RM011</td>
                   <td>
                     <div class="avatar-info">
                       <img src="Assets/doctor2.jpg" alt="Avatar" class="avatar">
                       <div class="info">
-                        <h6>Siti Rahayu</h6>
-                        <p>ID: P002</p>
+                        <h6>Raya Sartin</h6>
+                        <p>ID: P010</p>
                       </div>
                     </div>
                   </td>
-                  <td>04/04/2025</td>
-                  <td>58 kg</td>
+                  <td>05/05/2025</td>
+                  <td>55 kg</td>
                   <td>110/70 mmHg</td>
-                  <td>Infeksi Saluran Pernapasan Akut</td>
+                  <td>Diare</td>
                   <td>
                     <div class="d-flex justify-content-center gap-2">
                       <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#viewRecordModal" data-id="RM002">
@@ -171,20 +170,20 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>RM003</td>
+                  <td>RM013</td>
                   <td>
                     <div class="avatar-info">
                       <img src="Assets/doctor3.jpg" alt="Avatar" class="avatar">
                       <div class="info">
-                        <h6>Budi Santoso</h6>
-                        <p>ID: P003</p>
+                        <h6>Paulina Hermanto</h6>
+                        <p>ID: P019</p>
                       </div>
                     </div>
                   </td>
-                  <td>03/04/2025</td>
-                  <td>72 kg</td>
-                  <td>130/85 mmHg</td>
-                  <td>Diabetes Melitus Tipe 2</td>
+                  <td>05/05/2025</td>
+                  <td>48 kg</td>
+                  <td>120/85 mmHg</td>
+                  <td>Cacar Air</td>
                   <td>
                     <div class="d-flex justify-content-center gap-2">
                       <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#viewRecordModal" data-id="RM003">
@@ -205,7 +204,7 @@
           <!-- Pagination -->
           <div class="d-flex justify-content-between align-items-center mt-3">
             <div>
-              <span>Menampilkan 1-3 dari 24 rekam medis</span>
+              <span>Menampilkan 1-3 dari 3 rekam medis</span>
             </div>
             <nav>
               <ul class="pagination">
@@ -245,8 +244,8 @@
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pasien</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="viewPatientName">Ahmad Wijaya</div>
-                        <div class="small text-muted" id="viewPatientId">ID: P001</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="viewPatientName">Paulina Hermanto</div>
+                        <div class="small text-muted" id="viewPatientId">ID: P019</div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-user-circle fa-2x text-gray-300"></i>
@@ -262,7 +261,7 @@
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tanggal Pemeriksaan</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800" id="viewExamDate">05/05/2025</div>
-                        <div class="small text-muted" id="viewDoctorName">Dr. Surya Pratama</div>
+                        <div class="small text-muted" id="viewDoctorName">Dr. Budi Santoso</div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -276,37 +275,37 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label class="font-weight-bold">Berat Badan</label>
-                  <p id="viewWeight">65 kg</p>
+                  <p id="viewWeight">48 kg</p>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label class="font-weight-bold">Tekanan Darah</label>
-                  <p id="viewBloodPressure">120/80 mmHg</p>
+                  <p id="viewBloodPressure">120/85 mmHg</p>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label class="font-weight-bold">Suhu Tubuh</label>
-                  <p id="viewTemperature">36.5°C</p>
+                  <p id="viewTemperature">38.6°C</p>
                 </div>
               </div>
             </div>
             <div class="form-group mb-3">
               <label class="font-weight-bold">Keluhan Utama</label>
-              <p id="viewComplaints">Pasien mengeluhkan sakit kepala dan pusing sejak 3 hari yang lalu. Keluhan disertai mual tetapi tidak muntah.</p>
+              <p id="viewComplaints">Pasien mengeluhkan sakit kepala dan pusing sejak 2 hari yang lalu. Keluhan disertai tenggorakan yang sakit ketika menelan.</p>
             </div>
             <div class="form-group mb-3">
               <label class="font-weight-bold">Diagnosa</label>
-              <p id="viewDiagnosis">Hipertensi Ringan</p>
+              <p id="viewDiagnosis">Cacar Air</p>
             </div>
             <div class="form-group mb-3">
               <label class="font-weight-bold">Tindakan</label>
-              <p id="viewTreatment">Pemberian obat antihipertensi dan edukasi mengenai pengaturan pola makan rendah garam.</p>
+              <p id="viewTreatment">Pemberian obat antihistamin dan edukasi mengenai cacar air.</p>
             </div>
             <div class="form-group">
               <label class="font-weight-bold">Catatan Tambahan</label>
-              <p id="viewNotes">Pasien dianjurkan untuk kontrol kembali dalam 2 minggu. Disarankan untuk melakukan pemeriksaan laboratorium darah lengkap pada kunjungan berikutnya.</p>
+              <p id="viewNotes">-</p>
             </div>
           </div>
           <div class="modal-footer">
@@ -333,11 +332,9 @@
                     <label for="addPatient" class="form-label">Pasien</label>
                     <select class="form-select" id="addPatient" required>
                       <option value="" selected disabled>Pilih pasien...</option>
-                      <option value="P001">P001 - Ahmad Wijaya</option>
-                      <option value="P002">P002 - Siti Rahayu</option>
-                      <option value="P003">P003 - Budi Santoso</option>
-                      <option value="P004">P004 - Maya Indah</option>
-                      <option value="P005">P005 - Doni Kusuma</option>
+                      <option value="P001">P007 - Gilbert Oktavianus</option>
+                      <option value="P002">P010 - Raya Sartin</option>
+                      <option value="P019">P019 - Paulina Hermanto</option>
                     </select>
                   </div>
                 </div>
@@ -410,11 +407,10 @@
                   <div class="form-group">
                     <label for="editPatient" class="form-label">Pasien</label>
                     <select class="form-select" id="editPatient" required>
-                      <option value="P001">P001 - Ahmad Wijaya</option>
-                      <option value="P002">P002 - Siti Rahayu</option>
-                      <option value="P003">P003 - Budi Santoso</option>
-                      <option value="P004">P004 - Maya Indah</option>
-                      <option value="P005">P005 - Doni Kusuma</option>
+                        <option value="" selected disabled>Pilih pasien...</option>
+                        <option value="P001">P007 - Gilbert Oktavianus</option>
+                        <option value="P002">P010 - Raya Sartin</option>
+                        <option value="P019">P019 - Paulina Hermanto</option>
                     </select>
                   </div>
                 </div>
@@ -495,67 +491,89 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const toggleFilterBtn = document.getElementById('toggleFilterBtn');
-      const filterSection = document.getElementById('filterSection');
-      
-      toggleFilterBtn.addEventListener('click', function() {
+    const toggleFilterBtn = document.getElementById('toggleFilterBtn');
+    const filterSection = document.getElementById('filterSection');
+    
+    toggleFilterBtn.addEventListener('click', function() {
         if (filterSection.style.display === 'none') {
-          filterSection.style.display = 'block';
+        filterSection.style.display = 'block';
         } else {
-          filterSection.style.display = 'none';
+        filterSection.style.display = 'none';
         }
-      });
-      
-      // Handle filter reset
-      const resetFilterBtn = document.getElementById('resetFilterBtn');
-      resetFilterBtn.addEventListener('click', function() {
+    });
+    
+    // Handle filter reset
+    const resetFilterBtn = document.getElementById('resetFilterBtn');
+    resetFilterBtn.addEventListener('click', function() {
         document.getElementById('searchPatient').value = '';
         document.getElementById('filterDate').value = '';
         document.getElementById('filterDiagnosis').value = '';
-      });
-      
-      const viewRecordModal = document.getElementById('viewRecordModal');
-      viewRecordModal.addEventListener('show.bs.modal', function (event) {
+    });
+    
+    const paulinaData = {
+        patientId: 'P019',
+        patientName: 'Paulina Hermanto',
+        examDate: '2025-05-05',
+        doctorName: 'Dr. Budi Santoso',
+        weight: '48 kg',
+        bloodPressure: '120/85 mmHg',
+        temperature: '38.6°C',
+        complaints: 'Pasien mengeluhkan sakit kepala dan pusing sejak 2 hari yang lalu. Keluhan disertai tenggorakan yang sakit ketika menelan.',
+        diagnosis: 'Cacar Air',
+        treatment: 'Pemberian obat antihistamin dan edukasi mengenai cacar air.',
+        notes: '-'
+    };
+    
+    // View Record Modal
+    const viewRecordModal = document.getElementById('viewRecordModal');
+    viewRecordModal.addEventListener('show.bs.modal', function (event) {
+        document.getElementById('viewPatientName').textContent = paulinaData.patientName;
+        document.getElementById('viewPatientId').textContent = 'ID: ' + paulinaData.patientId;
+        document.getElementById('viewExamDate').textContent = formatDate(paulinaData.examDate);
+        document.getElementById('viewDoctorName').textContent = paulinaData.doctorName;
+        document.getElementById('viewWeight').textContent = paulinaData.weight;
+        document.getElementById('viewBloodPressure').textContent = paulinaData.bloodPressure;
+        document.getElementById('viewTemperature').textContent = paulinaData.temperature;
+        document.getElementById('viewComplaints').textContent = paulinaData.complaints;
+        document.getElementById('viewDiagnosis').textContent = paulinaData.diagnosis;
+        document.getElementById('viewTreatment').textContent = paulinaData.treatment;
+        document.getElementById('viewNotes').textContent = paulinaData.notes;
+    });
+    
+    // Edit Record Modal
+    const editRecordModal = document.getElementById('editRecordModal');
+    editRecordModal.addEventListener('show.bs.modal', function (event) {
         const button = event.relatedTarget;
-        const recordId = button.getAttribute('data-id');
-        
-        document.getElementById('viewPatientName').textContent = getPatientNameById(recordId);
-        document.getElementById('viewPatientId').textContent = 'ID: ' + getPatientIdById(recordId);
-      });
-      
-      const editRecordModal = document.getElementById('editRecordModal');
-      editRecordModal.addEventListener('show.bs.modal', function (event) {
-        const button = event.relatedTarget;
-        const recordId = button.getAttribute('data-id');
+        const recordId = button.getAttribute('data-id') || 'RM013';
         
         document.getElementById('editRecordId').value = recordId;
-        
-        if (recordId === 'RM001') {
-          document.getElementById('editPatient').value = 'P001';
-          document.getElementById('editExamDate').value = '2025-05-05';
-          document.getElementById('editWeight').value = '65';
-          document.getElementById('editBloodPressure').value = '120/80 mmHg';
-          document.getElementById('editTemperature').value = '36.5';
-          document.getElementById('editComplaints').value = 'Pasien mengeluhkan sakit kepala dan pusing sejak 3 hari yang lalu. Keluhan disertai mual tetapi tidak muntah.';
-          document.getElementById('editDiagnosis').value = 'Hipertensi Berat';
-          document.getElementById('editTreatment').value = 'Pemberian obat antihipertensi dan edukasi mengenai pengaturan pola makan rendah garam.';
-          document.getElementById('editNotes').value = 'Pasien dianjurkan untuk kontrol kembali dalam 2 minggu. Disarankan untuk melakukan pemeriksaan laboratorium darah lengkap pada kunjungan berikutnya.';
-        }
-      });
-      
-      const deleteRecordModal = document.getElementById('deleteRecordModal');
-      deleteRecordModal.addEventListener('show.bs.modal', function (event) {
+
+        document.getElementById('editPatient').value = paulinaData.patientId;
+        document.getElementById('editExamDate').value = paulinaData.examDate;
+        document.getElementById('editWeight').value = paulinaData.weight.replace(' kg', '');
+        document.getElementById('editBloodPressure').value = paulinaData.bloodPressure;
+        document.getElementById('editTemperature').value = paulinaData.temperature.replace('°C', '');
+        document.getElementById('editComplaints').value = paulinaData.complaints;
+        document.getElementById('editDiagnosis').value = paulinaData.diagnosis;
+        document.getElementById('editTreatment').value = paulinaData.treatment;
+        document.getElementById('editNotes').value = paulinaData.notes;
+    });
+    
+    // Delete Record Modal
+    const deleteRecordModal = document.getElementById('deleteRecordModal');
+    deleteRecordModal.addEventListener('show.bs.modal', function (event) {
         const button = event.relatedTarget;
         const recordId = button.getAttribute('data-id');
         document.getElementById('deleteRecordId').value = recordId;
-      });
-      
-      const saveAddRecordBtn = document.getElementById('saveAddRecordBtn');
-      saveAddRecordBtn.addEventListener('click', function() {
+    });
+    
+    // Add Record
+    const saveAddRecordBtn = document.getElementById('saveAddRecordBtn');
+    saveAddRecordBtn.addEventListener('click', function() {
         const form = document.getElementById('addRecordForm');
         if (!form.checkValidity()) {
-          form.reportValidity();
-          return;
+        form.reportValidity();
+        return;
         }
         
         alert('Rekam medis berhasil ditambahkan!');
@@ -563,50 +581,44 @@
         const modal = bootstrap.Modal.getInstance(document.getElementById('addRecordModal'));
         modal.hide();
         form.reset();
-      });
-      
-      const saveEditRecordBtn = document.getElementById('saveEditRecordBtn');
-      saveEditRecordBtn.addEventListener('click', function() {
+    });
+    
+    // Edit Record
+    const saveEditRecordBtn = document.getElementById('saveEditRecordBtn');
+    saveEditRecordBtn.addEventListener('click', function() {
         const form = document.getElementById('editRecordForm');
         if (!form.checkValidity()) {
-          form.reportValidity();
-          return;
+        form.reportValidity();
+        return;
         }
         
         const recordId = document.getElementById('editRecordId').value;
-        alert('Rekam medis ${recordId} berhasil diperbarui!');
+        alert(`Rekam medis ${recordId} berhasil diperbarui!`);
         
         const modal = bootstrap.Modal.getInstance(document.getElementById('editRecordModal'));
         modal.hide();
-      });
-      
-      const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-      confirmDeleteBtn.addEventListener('click', function() {
+    });
+    
+    // Delete Record
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+    confirmDeleteBtn.addEventListener('click', function() {
         const recordId = document.getElementById('deleteRecordId').value;
-        alert('Rekam medis ${recordId} berhasil dihapus!');
+        alert(`Rekam medis ${recordId} berhasil dihapus!`);
         
         const modal = bootstrap.Modal.getInstance(document.getElementById('deleteRecordModal'));
         modal.hide();
-      });
-      
-      function getPatientNameById(recordId) {
-        const patientMap = {
-          'RM001': 'Ahmad Wijaya',
-          'RM002': 'Siti Rahayu',
-          'RM003': 'Budi Santoso'
-        };
-        return patientMap[recordId] || 'Pasien Tidak Dikenal';
-      }
-      
-      function getPatientIdById(recordId) {
-        const patientIdMap = {
-          'RM001': 'P001',
-          'RM002': 'P002',
-          'RM003': 'P003'
-        };
-        return patientIdMap[recordId] || 'P000';
-      }
     });
+    
+    // Format tanggal dari YYYY-MM-DD menjadi DD/MM/YYYY
+    function formatDate(dateString) {
+        if (!dateString) return '-';
+        
+        const parts = dateString.split('-');
+        if (parts.length !== 3) return dateString;
+        
+        return `${parts[2]}/${parts[1]}/${parts[0]}`;
+    }
+});
   </script>
   
 
