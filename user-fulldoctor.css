@@ -1,63 +1,62 @@
-/* Reset & Base */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
   
-  body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f1f6fd;
-    color: #1e1e1e;
-  }
-  
-  /* Navbar */
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 60px;
-    background-color: transparent;
-  }
-  
-  .logo {
-    width: 130px;
-  }
-  
-  .nav-menu a {
-    text-decoration: none;
-    color: #333;
-    margin: 0 20px;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-  
-  .nav-menu a:hover {
-    color: #2859BC;
-  }  
-  
-  .navbar-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .notif-btn {
-    font-size: 24px;
-    background: none;
-    border: none;        /* Hilangkan border */
-    outline: none;       /* Hilangkan garis fokus (opsional) */
-    padding: 0;
-    cursor: pointer;
-  }
-  
-  .notif-btn:hover i {
-    transform: scale(1.1);
-    transition: transform 0.2s ease;
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    -o-transform: scale(1.1);
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f1f6fd;
+  color: #1e1e1e;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background-color: transparent;
+}
+
+.logo {
+  width: 150px;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #333;
+  margin: 0 20px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+  color: #2859BC;
+}  
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.notif-btn {
+  font-size: 24px;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.notif-btn:hover i {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
 }
   
 
@@ -93,14 +92,14 @@
     margin: 0 auto 40px;
   }
   
-  /* Search Box */.search-container {
+  .search-container {
   display: flex;
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
   border-radius: 16px;
   overflow: hidden;
-  /*Pentingagartombolmengikutibentukradius*/box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   background-color: white;
   -webkit-border-radius: 16px;
   -moz-border-radius: 16px;
@@ -114,7 +113,7 @@
   border: none;
   outline: none;
   font-size: 16px;
-  border-radius: 0; /* pastikan input tidak menabrak radius */
+  border-radius: 0;
 }
 
 .search-button {
@@ -128,7 +127,6 @@
   color: white;
   font-size: 18px;
   border-radius: 16px;
-  /*hapusradiusagarikutcontainer*/:;
   -webkit-border-radius: 16px;
   -moz-border-radius: 16px;
   -ms-border-radius: 16px;
@@ -143,8 +141,8 @@
   .doctor-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px; /* sebelumnya mungkin 30px, sekarang lebih rapat */
-    padding: 0 60px; /* beri jarak dari sisi kiri dan kanan */
+    gap: 20px;
+    padding: 0 60px;
   }
   
   
@@ -156,9 +154,9 @@
     transition: transform 0.2s;
     display: flex;
     flex-direction: column;
-    max-width: 280px;  /* ⬅️ batas lebar card */
+    max-width: 280px;
     width: 90%;
-    margin: 0 auto; /* biar rata tengah kalau sisa */
+    margin: 0 auto;
   }
   
   
@@ -175,13 +173,13 @@
   .doctor-info h3 {
     font-size: 16px;
     font-weight: 600;
-    margin-bottom: 8px; /* jarak antara nama dan spesialis */
+    margin-bottom: 8px;
   }
   
   .doctor-info .specialty {
     font-size: 14px;
     color: #888;
-    margin-bottom: 12px; /* jarak antara spesialis dan tombol */
+    margin-bottom: 12px;
   }
   
   .detail-button {
