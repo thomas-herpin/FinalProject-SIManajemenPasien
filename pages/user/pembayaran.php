@@ -46,7 +46,12 @@ $snapToken = \Midtrans\Snap::getSnapToken($params);
       text-align: center; cursor: pointer; transition: all 0.3s ease-in-out;
       background-color: #fff;
     }
-    .payment-method img { max-height: 30px; margin-bottom: 8px; }
+    .payment-method img { 
+      max-height: 40px; 
+      width: 120px; 
+      object-fit: cover; 
+      margin-bottom: 8px; 
+    }
     .payment-method.active {
       border-color: #0d6efd; background-color: #e9f3ff;
     }
@@ -90,7 +95,7 @@ $snapToken = \Midtrans\Snap::getSnapToken($params);
               <label class="payment-method active">
                 <input type="radio" name="payment" value="bca" checked/>
                 <img src="../../assets/logo_BCA.png" alt="BCA"/>
-                <div>BCA</div>
+                <div>Transfer BCA</div>
               </label>
             </div>
             <div class="col-4">
@@ -103,7 +108,7 @@ $snapToken = \Midtrans\Snap::getSnapToken($params);
             <div class="col-4">
               <label class="payment-method">
                 <input type="radio" name="payment" value="shopeepay"/>
-                <img src="../../assets/logo_shopeepay/png" alt="ShopeePay"/>
+                <img src="../../assets/logo_shopeepay.png" alt="ShopeePay"/>
                 <div>ShopeePay</div>
               </label>
             </div>
