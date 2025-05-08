@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard User - VitaNova</title>
+    <title>Profil - VitaNova</title>
     <link rel="stylesheet" href="profil.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="fontawesome/css/all.min.css">
 </head>
 
@@ -15,7 +16,7 @@
     <header class="navbar">
         <div class="navbar-left">
             <a href="dashboard-user.html">
-                <img src="Assets/VitaNova.png" alt="VitaNova" class="logo">
+                <img src="../../assets/VitaNova.png" alt="VitaNova" class="logo">
             </a>
         </div>
 
@@ -32,12 +33,12 @@
                 </a>
             </button>
             <div class="profile-dropdown">
-                <button class="profile-btn" id="profileToggle">
+                <button class="profile-btn">
                     <i class="fa-regular fa-user" style="color: #2859BC; font-size: 18px;"></i>
                 </button>
-                <div class="dropdown-menu" id="dropdownMenu">
-                    <a href="user-dashboard.html">Profil</a>
-                    <a href="login.html">Logout</a>
+                <div class="dropdown-menu">
+                    <a href="profil.html">Profil</a>
+                    <a href="#" id="logoutBtn">Logout</a>
                 </div>
             </div>
         </div>
@@ -45,13 +46,12 @@
 
     <!-- User Info -->
     <section class="user-info">
-        <img src="assets/profil.jpg" alt="Foto Profil" class="profile-img" />
+        <img src="../../assets/profile.jpg" alt="Foto Profil" class="profile-img">
         <div class="info-detail">
-            <h2>Febiola Hortensia Lengkong</h2>
-            <p>Nama: <span>Febiola H. Lengkong</span></p>
+            <h2>Nicholas Satria Kusuma</h2>            
             <p>Nomor Rekam Medis: <span>123456789010</span></p>
             <p>Nomor HP: <span>+62 81335492303</span></p>
-            <p>Email: <span>febiolalengkong026@student.unsrat.ac.id</span></p>
+            <p>Email: <span>nicholas05@gmail.com</span></p>
         </div>
         <a href="#" class="edit-icon"><i class="fa-regular fa-pen-to-square"></i></a>
     </section>
@@ -102,7 +102,6 @@
                     <td><span class="status rejected">Ditolak</span></td>
                     <td><i class="fa-solid fa-trash delete-icon"></i></td>
                 </tr>
-                <!-- Tambah baris lainnya jika perlu -->
             </tbody>
         </table>
 
@@ -124,7 +123,7 @@
             <h3>Edit Data User</h3>
             <form>
                 <label>Nama:</label>
-                <input type="text" value="Febiola H. Lengkong" />
+                <input type="text" value="Nicholas Satria Kusuma" />
 
                 <label>Nomor Rekam Medis:</label>
                 <input type="text" value="123456789010" />
@@ -133,7 +132,7 @@
                 <input type="text" value="+62 81335492303" />
 
                 <label>Email:</label>
-                <input type="email" value="febiolalengkong026@student.unsrat.ac.id" />
+                <input type="email" value="nicholas05@gmail.com" />
 
                 <button type="submit" class="save-btn">Simpan</button>
             </form>

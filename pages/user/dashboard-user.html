@@ -7,6 +7,7 @@
     <title>Dashboard User - VitaNova</title>
     <link rel="stylesheet" href="dashboard-user.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="fontawesome/css/all.min.css">
 </head>
 
@@ -35,7 +36,7 @@
                     <i class="fa-regular fa-user" style="color: #2859BC; font-size: 18px;"></i>
                 </button>
                 <div class="dropdown-menu">
-                    <a href="user-dashboard.html">Profil</a>
+                    <a href="profil.html">Profil</a>
                     <a href="#" id="logoutBtn">Logout</a>
                 </div>
             </div>
@@ -109,11 +110,6 @@
     <script>
         document.getElementById("logoutBtn").addEventListener("click", function (e) {
             e.preventDefault();
-
-            // (Opsional) Tambahkan logika untuk menghapus session atau token di sini
-            // localStorage.removeItem("token");
-
-            // Redirect ke halaman login
             window.location.href = "login.html";
         });
     </script>
