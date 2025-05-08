@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rekam Medis - VitaNova</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" type="text/css" href="dokter.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+    <a class="navbar-brand" href="dashboard-dokter.html">      
+        <img src="../../assets/VitaNova.png" alt="VitaNova" class="logo">
+    </a>
+    
+    <div class="ms-auto d-flex align-items-center">
+        <div class="dropdown">
+            <a class="d-flex align-items-center text-decoration-none text-black dropdown-toggle" role="button" id="adminDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="text-end me-2">
+                <h6 class="mb-0 fw-bold">Dr. Budi Santoso</h6>
+                <small>Dokter Anak</small>
+                </div>            
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
+                <li><a class="dropdown-item text-danger"><i class="fas fa-sign-out-alt me-2"></i>Keluar</a></li>
+            </ul>
+        </div>
+    </div>
+    </div>
+   </nav>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-menu">
+    <p class="menu-header">Menu Utama</p>
+    <a href="manajemen-jadwal.html"><i class="fas fa-calendar-alt"></i><span>Jadwal Praktek</span></a>
+    <a href="janji-temudokter.html"><i class="fas fa-handshake"></i><span>Janji Temu</span></a>        
+    
+    <p class="menu-header">Pasien</p>
+    <a href="dokter-rekam-medis.html" class="active"><i class="fas fa-notes-medical"></i> <span>Rekam Medis</span></a>
+    <a href="modul-pemeriksaan.html"><i class="fas fa-stethoscope"></i><span>Pemeriksaan</span></a>
+    <a href="dokter-resep-obat.html"><i class="fa-solid fa-pills"></i><span>Resep Obat</span></a>       
+    </div>
+</aside>
+
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Rekam Medis Pasien</h1>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRecordModal">
+          <i class="fas fa-plus-circle me-2"></i>Tambah Rekam Medis
+        </button>
+      </div>
+
+      <!-- Filter and Search Section -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold">Filter dan Pencarian</h6>
+          <button class="btn btn-sm btn-outline-secondary" id="toggleFilterBtn">
+            <i class="fas fa-filter me-1"></i>Toggle Filter
+          </button>
+        </div>
+        <div class="card-body" id="filterSection" style="display: none;">
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="searchPatient" class="form-label">Cari Pasien</label>
+              <input type="text" class="form-control" id="searchPatient" placeholder="Nama pasien...">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="filterDate" class="form-label">Filter Tanggal</label>
+              <input type="date" class="form-control" id="filterDate">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="filterDiagnosis" class="form-label">Filter Diagnosa</label>
+              <input type="text" class="form-control" id="filterDiagnosis" placeholder="Kata kunci diagnosa...">
+            </div>
+          </div>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-primary me-2" id="applyFilterBtn">Terapkan Filter</button>
+            <button class="btn btn-outline-secondary" id="resetFilterBtn">Reset</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabel Rekam Medis -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold">Daftar Rekam Medis</h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover" id="recordsTable">
+              <thead>
+                <tr>
+                  <th style="text-align: center; vertical-align: middle;">ID</th>
+                  <th style="text-align: center; vertical-align: middle;">Pasien</th>
+                  <th style="text-align: center; vertical-align: middle;">Tanggal</th>
+                  <th style="text-align: center; vertical-align: middle;">Berat Badan</th>
+                  <th style="text-align: center; vertical-align: middle;">Tekanan Darah</th>
+                  <th style="text-align: center; vertical-align: middle;">Diagnosa</th>
+                  <th style="text-align: center; vertical-align: middle;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>RM009</td>
+                  <td>
+                    <div class="avatar-info">                      
+                      <div class="info">
+                        <h6>Gilbert Oktavianus</h6>
+                        <p>ID: P007</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>04/05/2025</td>
+                  <td>69 kg</td>
+                  <td>122/80 mmHg</td>
+                  <td>Demam</td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-2">
+                      <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#viewRecordModal" data-id="RM001">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editRecordModal" data-id="RM001">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteRecordModal" data-id="RM001">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>                  
+                </tr>
+                <tr>
+                  <td>RM011</td>
+                  <td>
+                    <div class="avatar-info">                      
+                      <div class="info">
+                        <h6>Raya Sartin</h6>
+                        <p>ID: P010</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>05/05/2025</td>
+                  <td>55 kg</td>
+                  <td>110/70 mmHg</td>
+                  <td>Diare</td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-2">
+                      <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#viewRecordModal" data-id="RM002">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editRecordModal" data-id="RM002">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteRecordModal" data-id="RM002">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>RM013</td>
+                  <td>
+                    <div class="avatar-info">                      
+                      <div class="info">
+                        <h6>Paulina Hermanto</h6>
+                        <p>ID: P019</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>05/05/2025</td>
+                  <td>48 kg</td>
+                  <td>120/85 mmHg</td>
+                  <td>Cacar Air</td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-2">
+                      <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#viewRecordModal" data-id="RM003">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editRecordModal" data-id="RM003">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteRecordModal" data-id="RM003">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Pagination -->
+          <div class="d-flex justify-content-between align-items-center mt-3">
+            <div>
+              <span>Menampilkan 1-3 dari 3 rekam medis</span>
+            </div>
+            <nav>
+              <ul class="pagination">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View Record Modal -->
+    <div class="modal fade" id="viewRecordModal" tabindex="-1" aria-labelledby="viewRecordModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="viewRecordModalLabel">Detail Rekam Medis</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <div class="card border-left-primary shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pasien</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="viewPatientName">Paulina Hermanto</div>
+                        <div class="small text-muted" id="viewPatientId">ID: P019</div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-user-circle fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card border-left-info shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tanggal Pemeriksaan</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="viewExamDate">05/05/2025</div>
+                        <div class="small text-muted" id="viewDoctorName">Dr. Budi Santoso</div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="font-weight-bold">Berat Badan</label>
+                  <p id="viewWeight">48 kg</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="font-weight-bold">Tekanan Darah</label>
+                  <p id="viewBloodPressure">120/85 mmHg</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="font-weight-bold">Suhu Tubuh</label>
+                  <p id="viewTemperature">38.6°C</p>
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label class="font-weight-bold">Keluhan Utama</label>
+              <p id="viewComplaints">Pasien mengeluhkan sakit kepala dan pusing sejak 2 hari yang lalu. Keluhan disertai tenggorakan yang sakit ketika menelan.</p>
+            </div>
+            <div class="form-group mb-3">
+              <label class="font-weight-bold">Diagnosa</label>
+              <p id="viewDiagnosis">Cacar Air</p>
+            </div>
+            <div class="form-group mb-3">
+              <label class="font-weight-bold">Tindakan</label>
+              <p id="viewTreatment">Pemberian obat antihistamin dan edukasi mengenai cacar air.</p>
+            </div>
+            <div class="form-group">
+              <label class="font-weight-bold">Catatan Tambahan</label>
+              <p id="viewNotes">-</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editRecordModal">Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Record Modal -->
+    <div class="modal fade" id="addRecordModal" tabindex="-1" aria-labelledby="addRecordModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addRecordModalLabel">Tambah Rekam Medis Baru</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="addRecordForm">
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="addPatient" class="form-label">Pasien</label>
+                    <select class="form-select" id="addPatient" required>
+                      <option value="" selected disabled>Pilih pasien...</option>
+                      <option value="P001">P007 - Gilbert Oktavianus</option>
+                      <option value="P002">P010 - Raya Sartin</option>
+                      <option value="P019">P019 - Paulina Hermanto</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="addExamDate" class="form-label">Tanggal Pemeriksaan</label>
+                    <input type="date" class="form-control" id="addExamDate" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="addWeight" class="form-label">Berat Badan (kg)</label>
+                    <input type="number" class="form-control" id="addWeight" step="0.1" required>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="addBloodPressure" class="form-label">Tekanan Darah</label>
+                    <input type="text" class="form-control" id="addBloodPressure" placeholder="120/80 mmHg" required>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="addTemperature" class="form-label">Suhu Tubuh (°C)</label>
+                    <input type="number" class="form-control" id="addTemperature" step="0.1" placeholder="36.5">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label for="addComplaints" class="form-label">Keluhan Utama</label>
+                <textarea class="form-control" id="addComplaints" rows="2" required></textarea>
+              </div>
+              <div class="form-group mb-3">
+                <label for="addDiagnosis" class="form-label">Diagnosa</label>
+                <textarea class="form-control" id="addDiagnosis" rows="2" required></textarea>
+              </div>
+              <div class="form-group mb-3">
+                <label for="addTreatment" class="form-label">Tindakan</label>
+                <textarea class="form-control" id="addTreatment" rows="2" required></textarea>
+              </div>
+              <div class="form-group mb-3">
+                <label for="addNotes" class="form-label">Catatan Tambahan</label>
+                <textarea class="form-control" id="addNotes" rows="2"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary" id="saveAddRecordBtn">Simpan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Record Modal -->
+    <div class="modal fade" id="editRecordModal" tabindex="-1" aria-labelledby="editRecordModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editRecordModalLabel">Edit Rekam Medis</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="editRecordForm">
+              <input type="hidden" id="editRecordId">
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="editPatient" class="form-label">Pasien</label>
+                    <select class="form-select" id="editPatient" required>
+                        <option value="" selected disabled>Pilih pasien...</option>
+                        <option value="P001">P007 - Gilbert Oktavianus</option>
+                        <option value="P002">P010 - Raya Sartin</option>
+                        <option value="P019">P019 - Paulina Hermanto</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="editExamDate" class="form-label">Tanggal Pemeriksaan</label>
+                    <input type="date" class="form-control" id="editExamDate" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="editWeight" class="form-label">Berat Badan (kg)</label>
+                    <input type="number" class="form-control" id="editWeight" step="0.1" required>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="editBloodPressure" class="form-label">Tekanan Darah</label>
+                    <input type="text" class="form-control" id="editBloodPressure" required>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="editTemperature" class="form-label">Suhu Tubuh (°C)</label>
+                    <input type="number" class="form-control" id="editTemperature" step="0.1">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label for="editComplaints" class="form-label">Keluhan Utama</label>
+                <textarea class="form-control" id="editComplaints" rows="2" required></textarea>
+              </div>
+              <div class="form-group mb-3">
+                <label for="editDiagnosis" class="form-label">Diagnosa</label>
+                <textarea class="form-control" id="editDiagnosis" rows="2" required></textarea>
+              </div>
+              <div class="form-group mb-3">
+                <label for="editTreatment" class="form-label">Tindakan</label>
+                <textarea class="form-control" id="editTreatment" rows="2" required></textarea>
+              </div>
+              <div class="form-group mb-3">
+                <label for="editNotes" class="form-label">Catatan Tambahan</label>
+                <textarea class="form-control" id="editNotes" rows="2"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary" id="saveEditRecordBtn">Simpan Perubahan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Record Modal -->
+    <div class="modal fade" id="deleteRecordModal" tabindex="-1" aria-labelledby="deleteRecordModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteRecordModalLabel">Konfirmasi Hapus</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Apakah Anda yakin ingin menghapus rekam medis ini?</p>
+            <p class="text-danger"><strong>Perhatian:</strong> Tindakan ini tidak dapat dibatalkan.</p>
+            <input type="hidden" id="deleteRecordId">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Hapus</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const toggleFilterBtn = document.getElementById('toggleFilterBtn');
+    const filterSection = document.getElementById('filterSection');
+    
+    toggleFilterBtn.addEventListener('click', function() {
+        if (filterSection.style.display === 'none') {
+        filterSection.style.display = 'block';
+        } else {
+        filterSection.style.display = 'none';
+        }
+    });
+    
+    // Handle filter reset
+    const resetFilterBtn = document.getElementById('resetFilterBtn');
+    resetFilterBtn.addEventListener('click', function() {
+        document.getElementById('searchPatient').value = '';
+        document.getElementById('filterDate').value = '';
+        document.getElementById('filterDiagnosis').value = '';
+    });
+    
+    const paulinaData = {
+        patientId: 'P019',
+        patientName: 'Paulina Hermanto',
+        examDate: '2025-05-05',
+        doctorName: 'Dr. Budi Santoso',
+        weight: '48 kg',
+        bloodPressure: '120/85 mmHg',
+        temperature: '38.6°C',
+        complaints: 'Pasien mengeluhkan sakit kepala dan pusing sejak 2 hari yang lalu. Keluhan disertai tenggorakan yang sakit ketika menelan.',
+        diagnosis: 'Cacar Air',
+        treatment: 'Pemberian obat antihistamin dan edukasi mengenai cacar air.',
+        notes: '-'
+    };
+    
+    // View Record Modal
+    const viewRecordModal = document.getElementById('viewRecordModal');
+    viewRecordModal.addEventListener('show.bs.modal', function (event) {
+        document.getElementById('viewPatientName').textContent = paulinaData.patientName;
+        document.getElementById('viewPatientId').textContent = 'ID: ' + paulinaData.patientId;
+        document.getElementById('viewExamDate').textContent = formatDate(paulinaData.examDate);
+        document.getElementById('viewDoctorName').textContent = paulinaData.doctorName;
+        document.getElementById('viewWeight').textContent = paulinaData.weight;
+        document.getElementById('viewBloodPressure').textContent = paulinaData.bloodPressure;
+        document.getElementById('viewTemperature').textContent = paulinaData.temperature;
+        document.getElementById('viewComplaints').textContent = paulinaData.complaints;
+        document.getElementById('viewDiagnosis').textContent = paulinaData.diagnosis;
+        document.getElementById('viewTreatment').textContent = paulinaData.treatment;
+        document.getElementById('viewNotes').textContent = paulinaData.notes;
+    });
+    
+    // Edit Record Modal
+    const editRecordModal = document.getElementById('editRecordModal');
+    editRecordModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        const recordId = button.getAttribute('data-id') || 'RM013';
+        
+        document.getElementById('editRecordId').value = recordId;
+
+        document.getElementById('editPatient').value = paulinaData.patientId;
+        document.getElementById('editExamDate').value = paulinaData.examDate;
+        document.getElementById('editWeight').value = paulinaData.weight.replace(' kg', '');
+        document.getElementById('editBloodPressure').value = paulinaData.bloodPressure;
+        document.getElementById('editTemperature').value = paulinaData.temperature.replace('°C', '');
+        document.getElementById('editComplaints').value = paulinaData.complaints;
+        document.getElementById('editDiagnosis').value = paulinaData.diagnosis;
+        document.getElementById('editTreatment').value = paulinaData.treatment;
+        document.getElementById('editNotes').value = paulinaData.notes;
+    });
+    
+    // Delete Record Modal
+    const deleteRecordModal = document.getElementById('deleteRecordModal');
+    deleteRecordModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        const recordId = button.getAttribute('data-id');
+        document.getElementById('deleteRecordId').value = recordId;
+    });
+    
+    // Add Record
+    const saveAddRecordBtn = document.getElementById('saveAddRecordBtn');
+    saveAddRecordBtn.addEventListener('click', function() {
+        const form = document.getElementById('addRecordForm');
+        if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+        }
+        
+        alert('Rekam medis berhasil ditambahkan!');
+        
+        const modal = bootstrap.Modal.getInstance(document.getElementById('addRecordModal'));
+        modal.hide();
+        form.reset();
+    });
+    
+    // Edit Record
+    const saveEditRecordBtn = document.getElementById('saveEditRecordBtn');
+    saveEditRecordBtn.addEventListener('click', function() {
+        const form = document.getElementById('editRecordForm');
+        if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+        }
+        
+        const recordId = document.getElementById('editRecordId').value;
+        alert(`Rekam medis ${recordId} berhasil diperbarui!`);
+        
+        const modal = bootstrap.Modal.getInstance(document.getElementById('editRecordModal'));
+        modal.hide();
+    });
+    
+    // Delete Record
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+    confirmDeleteBtn.addEventListener('click', function() {
+        const recordId = document.getElementById('deleteRecordId').value;
+        alert(`Rekam medis ${recordId} berhasil dihapus!`);
+        
+        const modal = bootstrap.Modal.getInstance(document.getElementById('deleteRecordModal'));
+        modal.hide();
+    });
+    
+    // Format tanggal dari YYYY-MM-DD menjadi DD/MM/YYYY
+    function formatDate(dateString) {
+        if (!dateString) return '-';
+        
+        const parts = dateString.split('-');
+        if (parts.length !== 3) return dateString;
+        
+        return `${parts[2]}/${parts[1]}/${parts[0]}`;
+    }
+});
+  </script>
+  
+
+</body>
+</html>

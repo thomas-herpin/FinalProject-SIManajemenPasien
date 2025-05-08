@@ -1,0 +1,240 @@
+:root {
+--primary-color: blue;
+--secondary-color: green;
+--warning-color: gold;
+--danger-color: red;
+--info-color: lightblue;
+--dark-color: black;
+--sidebar-width: 280px;
+}
+
+body {
+    background-color: #f8f9fc;
+    overflow-x: hidden;
+}
+
+.logo {
+    width: 135px;
+}
+
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    height: 70px;
+    padding: 0 20px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    background: var(--dark-color);
+    color: white;
+    padding-top: 75px;
+    overflow-y: auto;
+}
+
+.sidebar-menu {
+    padding: 0 1rem;
+}
+
+.menu-header {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: grey;
+    margin: 1.5rem 0;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.sidebar a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.sidebar a:hover, .sidebar a.active {
+    color: white;
+}
+
+.sidebar a i {
+    margin-right: 12px;
+    width: 20px;
+    text-align: center;
+}
+
+.main-content {
+    margin-left: var(--sidebar-width);
+    margin-top: 70px;
+    padding: 2rem;
+}
+
+.page-header {
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    background-color: white;
+    border-bottom: 1px solid #f1f1f1;
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px 15px 0 0;
+}
+
+.card-header .btn {
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+}
+
+.stat-card {
+    border-radius: 15px;
+    padding: 1.5rem;
+    height: 100%;
+}
+
+.stat-card .icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.stat-card h3 {
+    font-weight: bold;
+}
+
+.stat-card p {
+    font-size: 0.9rem;
+}
+
+.stat-card.primary {
+    background: linear-gradient(45deg, rgba(78, 115, 223, 0.1) 0%, rgba(78, 115, 223, 0.03) 100%);
+    border-left: 4px solid var(--primary-color);
+}
+
+.stat-card.success {
+    background: linear-gradient(45deg, rgba(28, 200, 138, 0.1) 0%, rgba(28, 200, 138, 0.03) 100%);
+    border-left: 4px solid var(--secondary-color);
+}
+
+.stat-card.warning {
+    background: linear-gradient(45deg, rgba(246, 194, 62, 0.1) 0%, rgba(246, 194, 62, 0.03) 100%);
+    border-left: 4px solid var(--warning-color);
+}
+
+.stat-card.danger {
+    background: linear-gradient(45deg, rgba(231, 74, 59, 0.1) 0%, rgba(231, 74, 59, 0.03) 100%);
+    border-left: 4px solid var(--danger-color);
+}
+
+.stat-card.primary .icon {
+    background-color: rgba(78, 115, 223, 0.2);
+    color: var(--primary-color);
+}
+
+.stat-card.success .icon {
+    background-color: rgba(28, 200, 138, 0.2);
+    color: var(--secondary-color);
+}
+
+.stat-card.warning .icon {
+    background-color: rgba(246, 194, 62, 0.2);
+    color: var(--warning-color);
+}
+
+.stat-card.danger .icon {
+    background-color: rgba(231, 74, 59, 0.2);
+    color: var(--danger-color);
+}
+
+.table thead th {
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.75rem 1.5rem;
+}
+
+.table td {
+    vertical-align: middle;
+    padding: 1rem 1.5rem;
+    color: rgb(116, 116, 116);
+    font-size: 0.9rem;
+}
+
+.status-badge {
+    padding: 0.4rem 0.75rem;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 0.75rem;
+    display: inline-block;
+}
+
+.status-confirmed {
+    background-color: rgba(28, 200, 138, 0.1);
+    color: var(--secondary-color);
+}
+
+.status-pending {
+    background-color: rgba(246, 194, 62, 0.1);
+    color: var(--warning-color);
+}
+
+.status-cancelled {
+    background-color: rgba(231, 74, 59, 0.1);
+    color: var(--danger-color);
+}
+
+.avatar-info {
+    display: flex;
+    align-items: center;
+}
+
+.avatar-info .info h6 {
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.avatar-info .info p {
+    margin-bottom: 0;
+    font-size: 0.75rem;
+    color: gray;
+}
+
+.footer {
+    padding: 1.5rem 0;
+    text-align: center;
+    color: #6c757d;
+    font-size: 0.85rem;
+}
+
+.footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
