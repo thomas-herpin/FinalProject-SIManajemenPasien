@@ -89,21 +89,21 @@ $snapToken = \Midtrans\Snap::getSnapToken($params);
             <div class="col-4">
               <label class="payment-method active">
                 <input type="radio" name="payment" value="bca" checked/>
-                <img src="D:\FinalProject-SIManajemenPasien\image\1280px-Bank_Central_Asia.svg.png" alt="BCA"/>
+                <img src="image\1280px-Bank_Central_Asia.svg.png" alt="BCA"/>
                 <div>BCA</div>
               </label>
             </div>
             <div class="col-4">
               <label class="payment-method">
                 <input type="radio" name="payment" value="gopay"/>
-                <img src="D:\FinalProject-SIManajemenPasien\image\gopay-logo_brandlogos.net_gph3u-512x512.png" alt="GoPay"/>
+                <img src="image\gopay-logo_brandlogos.net_gph3u-512x512.png" alt="GoPay"/>
                 <div>GoPay</div>
               </label>
             </div>
             <div class="col-4">
               <label class="payment-method">
                 <input type="radio" name="payment" value="shopeepay"/>
-                <img src="D:\FinalProject-SIManajemenPasien\image\shopeepay-logo_brandlogos.net_yl7nf-512x512.png" alt="ShopeePay"/>
+                <img src="image\shopeepay-logo_brandlogos.net_yl7nf-512x512.png" alt="ShopeePay"/>
                 <div>ShopeePay</div>
               </label>
             </div>
