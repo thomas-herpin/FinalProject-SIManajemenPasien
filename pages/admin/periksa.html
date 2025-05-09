@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar Pemeriksaan - VitaNova</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.3/main.min.css">
+  <link rel="stylesheet" type="text/css" href="css/jadwal.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="dashboard-admin.html">      
+        <img src="../../assets/VitaNova.png" alt="VitaNova" class="logo">
+      </a>
+      
+      <div class="ms-auto d-flex align-items-center">
+        <div class="dropdown">
+          <a class="d-flex align-items-center text-decoration-none text-black dropdown-toggle" role="button" id="adminDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="text-end me-2">
+              <h6 class="mb-0 fw-bold">Admin Utama</h6>
+              <small>Administrator</small>
+            </div>            
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
+            <li><a class="dropdown-item text-danger"><i class="fas fa-sign-out-alt me-2"></i>Keluar</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-menu">
+      <p class="menu-header">Menu Utama</p>
+      <a href="jadwal.html"><i class="fas fa-calendar-alt"></i><span>Manajemen Jadwal</span></a>
+      <a href="janji-temu.html"><i class="fas fa-handshake"></i><span>Janji Temu</span></a>
+      <a href="manage-pengguna.html"><i class="fas fa-users"></i> <span>Manajemen Pengguna</span></a>
+      
+      <p class="menu-header">Rekam & Keuangan</p>
+      <a href="rekam-medis.html"><i class="fas fa-notes-medical"></i> <span>Rekam Medis</span></a>
+      <a href="periksa.html" class="active"><i class="fas fa-stethoscope"></i><span>Pemeriksaan</span></a>
+      <a href="resep-obat.html"><i class="fa-solid fa-pills"></i><span>Resep Obat</span></a>
+      <a href="admin-pembayaran.html"><i class="fas fa-credit-card"></i> <span>Pembayaran</span></a>    
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  
+    <main class="main-content">
+        <div class="container-fluid">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h3>Daftar Pemeriksaan</h3>
+        </div>
+        
+        <!-- Filter & Search -->
+        <div class="card mb-4">
+            <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-3">
+                <label for="filterTanggal" class="form-label">Tanggal</label>
+                <input type="date" class="form-control" id="filterTanggal">
+                </div>
+                <div class="col-md-3">
+                <label for="filterRekamMedis" class="form-label">ID Rekam Medis</label>
+                <input type="text" class="form-control" id="filterRekamMedis" placeholder="Masukkan ID...">
+                </div>
+                <div class="col-md-4">
+                <label for="filterDiagnosa" class="form-label">Diagnosa</label>
+                <input type="text" class="form-control" id="filterDiagnosa" placeholder="Cari diagnosa...">
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                <button class="btn btn-primary w-100">
+                    <i class="fas fa-search me-2"></i>Cari
+                </button>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+        <!-- Data Pemeriksaan -->
+        <div class="card">
+            <div class="card-header">
+            <h5 class="mb-0">Daftar Pemeriksaan</h5>
+            </div>
+            <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th style="text-align: center; vertical-align: middle;">ID Periksa</th>
+                    <th style="text-align: center; vertical-align: middle;">ID Rekam Medis</th>
+                    <th style="text-align: center; vertical-align: middle;">Pasien</th>
+                    <th style="text-align: center; vertical-align: middle;">Tanggal</th>
+                    <th style="text-align: center; vertical-align: middle;">Keluhan</th>
+                    <th style="text-align: center; vertical-align: middle;">Diagnosa</th>
+                    <th style="text-align: center; vertical-align: middle;">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>P001</td>
+                    <td>RM001</td>
+                    <td class="avatar-info">                        
+                        <div class="info">
+                        <h6>Ahmad Setiawan</h6>
+                        <p>32 Tahun</p>
+                        </div>
+                    </td>
+                    <td>05-05-2025</td>
+                    <td>Sakit kepala, demam</td>
+                    <td>Migrain</td>
+                    <td>
+                        <div class="d-flex justify-content-center gap-2">
+                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#detailPemeriksaanModal">
+                            <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-warning data-bs-toggle="modal" data-bs-target="#editPemeriksaanModal">
+                            <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger">
+                            <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td>P002</td>
+                    <td>RM003</td>
+                    <td class="avatar-info">                        
+                        <div class="info">
+                        <h6>Siti Rahayu</h6>
+                        <p>28 Tahun</p>
+                        </div>
+                    </td>
+                    <td>04-05-2025</td>
+                    <td>Batuk, pilek, tenggorokan sakit</td>
+                    <td>ISPA</td>
+                    <td>
+                        <div class="d-flex justify-content-center gap-2">
+                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#detailPemeriksaanModal">
+                            <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editPemeriksaanModal">
+                            <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger">
+                            <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td>P003</td>
+                    <td>RM007</td>
+                    <td class="avatar-info">                        
+                        <div class="info">
+                        <h6>Budi Santoso</h6>
+                        <p>45 Tahun</p>
+                        </div>
+                    </td>
+                    <td>03-05-2025</td>
+                    <td>Nyeri sendi, kaku pada pagi hari</td>
+                    <td>Artritis Reumatoid</td>
+                    <td>
+                        <div class="d-flex justify-content-center gap-2">
+                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#detailPemeriksaanModal">
+                            <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-warning data-bs-toggle="modal" data-bs-target="#editPemeriksaanModal">
+                            <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger">
+                            <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+            
+            <!-- Pagination -->
+            <nav aria-label="Page navigation" class="mt-4">
+                <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                    <i class="fas fa-chevron-left"></i>
+                    </a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                    <i class="fas fa-chevron-right"></i>
+                    </a>
+                </li>
+                </ul>
+            </nav>
+            </div>
+        </div>
+        </div>
+    </main>
+    
+    <!-- Modal Tambah Pemeriksaan -->
+    <div class="modal fade" id="tambahPemeriksaanModal" tabindex="-1" aria-labelledby="tambahPemeriksaanModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="tambahPemeriksaanModalLabel">Tambah Pemeriksaan Baru</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <form>
+                <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="id_rm" class="form-label">ID Rekam Medis</label>
+                    <select class="form-select" id="id_rm" required>
+                    <option value="" selected disabled>Pilih ID Rekam Medis</option>
+                    <option value="RM001">RM001 - Ahmad Setiawan</option>
+                    <option value="RM002">RM002 - Dewi Lestari</option>
+                    <option value="RM003">RM003 - Siti Rahayu</option>
+                    <option value="RM007">RM007 - Budi Santoso</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="tanggal" class="form-label">Tanggal Pemeriksaan</label>
+                    <input type="date" class="form-control" id="tanggal" required>
+                </div>
+                </div>
+                <div class="mb-3">
+                <label for="keluhan" class="form-label">Keluhan</label>
+                <textarea class="form-control" id="keluhan" rows="3" required placeholder="Tuliskan keluhan pasien..."></textarea>
+                </div>
+                <div class="mb-3">
+                <label for="diagnosa" class="form-label">Diagnosa</label>
+                <textarea class="form-control" id="diagnosa" rows="3" required placeholder="Tuliskan diagnosa..."></textarea>
+                </div>
+                <div class="mb-3">
+                <label for="tindakan" class="form-label">Tindakan</label>
+                <textarea class="form-control" id="tindakan" rows="2" placeholder="Tuliskan tindakan yang dilakukan..."></textarea>
+                </div>
+                <div class="mb-3">
+                <label for="catatan" class="form-label">Catatan Tambahan</label>
+                <textarea class="form-control" id="catatan" rows="2" placeholder="Tuliskan catatan tambahan jika ada..."></textarea>
+                </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary">Simpan Pemeriksaan</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+    <!-- Modal Detail Pemeriksaan -->
+    <div class="modal fade" id="detailPemeriksaanModal" tabindex="-1" aria-labelledby="detailPemeriksaanModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="detailPemeriksaanModalLabel">Detail Pemeriksaan</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <div class="row mb-4">
+                <div class="col-lg-6">
+                <div class="card border-0 bg-light">
+                    <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Informasi Pasien</h6>
+                    <div class="avatar-info mb-3">
+                        <div class="info">
+                        <h5 class="mb-0">Ahmad Setiawan</h5>
+                        <p class="mb-0">32 Tahun / Laki-laki</p>
+                        </div>
+                    </div>
+                    <p class="mb-1"><strong>ID Rekam Medis:</strong> RM001</p>
+                    <p class="mb-1"><strong>No. Identitas:</strong> 3273081209890002</p>
+                    <p class="mb-1"><strong>Golongan Darah:</strong> O+</p>
+                    <p class="mb-1"><strong>Alergi:</strong> Tidak ada</p>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-6">
+                <div class="card border-0 bg-light">
+                    <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Informasi Pemeriksaan</h6>
+                    <p class="mb-1"><strong>ID Pemeriksaan:</strong> P001</p>
+                    <p class="mb-1"><strong>Tanggal:</strong> 05-05-2025</p>
+                    <p class="mb-1"><strong>Dokter:</strong> dr. Hendra Wijaya, Sp.PD</p>
+                    <p class="mb-1"><strong>Status:</strong> <span class="status-badge status-confirmed">Selesai</span></p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+            <div class="card mb-3">
+                <div class="card-header bg-light">
+                <h6 class="mb-0">Hasil Pemeriksaan</h6>
+                </div>
+                <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                    <p class="fw-bold mb-0">Keluhan:</p>
+                    </div>
+                    <div class="col-md-9">
+                    <p class="mb-0">Sakit kepala, demam</p>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                    <p class="fw-bold mb-0">Diagnosa:</p>
+                    </div>
+                    <div class="col-md-9">
+                    <p class="mb-0">Migrain</p>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                    <p class="fw-bold mb-0">Tindakan:</p>
+                    </div>
+                    <div class="col-md-9">
+                    <p class="mb-0">Pemberian obat pereda nyeri dan anti-inflamasi</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                    <p class="fw-bold mb-0">Catatan:</p>
+                    </div>
+                    <div class="col-md-9">
+                    <p class="mb-0">Pasien disarankan untuk istirahat cukup dan menghindari paparan cahaya terang. Follow-up dalam 7 hari jika keluhan belum membaik.</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#tambahResepModal">
+                <i class="fa-solid fa-pills me-2"></i>Tambah Resep
+                </button>
+                <button class="btn btn-outline-success" onclick="window.open('cetak-pemeriksaan.html', '_blank')">
+                <i class="fas fa-print me-2"></i>Cetak Pemeriksaan
+                </button>
+            </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+    <!-- Modal Edit Pemeriksaan -->
+    <div class="modal fade" id="editPemeriksaanModal" tabindex="-1" aria-labelledby="editPemeriksaanModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="editPemeriksaanModalLabel">Edit Pemeriksaan</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <form>
+                <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="edit_id_rm" class="form-label">ID Rekam Medis</label>
+                    <input type="text" class="form-control" id="edit_id_rm" value="RM001" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="edit_tanggal" class="form-label">Tanggal Pemeriksaan</label>
+                    <input type="date" class="form-control" id="edit_tanggal" value="2025-05-05" required>
+                </div>
+                </div>
+                <div class="mb-3">
+                <label for="edit_keluhan" class="form-label">Keluhan</label>
+                <textarea class="form-control" id="edit_keluhan" rows="3" required>Sakit kepala, demam</textarea>
+                </div>
+                <div class="mb-3">
+                <label for="edit_diagnosa" class="form-label">Diagnosa</label>
+                <textarea class="form-control" id="edit_diagnosa" rows="3" required>Migrain</textarea>
+                </div>
+                <div class="mb-3">
+                <label for="edit_tindakan" class="form-label">Tindakan</label>
+                <textarea class="form-control" id="edit_tindakan" rows="2">Pemberian obat pereda nyeri dan anti-inflamasi</textarea>
+                </div>
+                <div class="mb-3">
+                <label for="edit_catatan" class="form-label">Catatan Tambahan</label>
+                <textarea class="form-control" id="edit_catatan" rows="2">Pasien disarankan untuk istirahat cukup dan menghindari paparan cahaya terang. Follow-up dalam 7 hari jika keluhan belum membaik.</textarea>
+                </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary">Simpan Perubahan</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+    <!-- Modal Tambah Resep -->
+    <div class="modal fade" id="tambahResepModal" tabindex="-1" aria-labelledby="tambahResepModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="tambahResepModalLabel">Tambah Resep Obat</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <form>
+                <div class="mb-3">
+                <label for="id_periksa" class="form-label">ID Pemeriksaan</label>
+                <input type="text" class="form-control" id="id_periksa" value="P001" readonly>
+                </div>
+                <div class="mb-3">
+                <label for="nama_pasien" class="form-label">Nama Pasien</label>
+                <input type="text" class="form-control" id="nama_pasien" value="Ahmad Setiawan" readonly>
+                </div>
+                <div class="mb-3">
+                <label for="tambah_obat" class="form-label">Tambah Obat</label>
+                <div class="input-group">
+                    <select class="form-select" id="tambah_obat">
+                    <option value="" selected disabled>Pilih obat...</option>
+                    <option value="1">Paracetamol 500mg</option>
+                    <option value="2">Ibuprofen 400mg</option>
+                    <option value="3">Amoxicillin 500mg</option>
+                    <option value="4">Omeprazole 20mg</option>
+                    </select>
+                    <button class="btn btn-primary" type="button">+</button>
+                </div>
+                </div>
+                
+                <div class="mb-3">
+                <label class="form-label">Daftar Obat</label>
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                    <thead>
+                        <tr>
+                        <th>Nama Obat</th>
+                        <th>Dosis</th>
+                        <th>Jumlah</th>
+                        <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td>Paracetamol 500mg</td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" value="3x1">
+                        </td>
+                        <td>
+                            <input type="number" class="form-control form-control-sm" value="10">
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-danger me-1">
+                            <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+                </div>
+                
+                <div class="mb-3">
+                <label for="instruksi" class="form-label">Instruksi Khusus</label>
+                <textarea class="form-control" id="instruksi" rows="2" placeholder="Tuliskan instruksi khusus jika ada..."></textarea>
+                </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary">Simpan Resep</button>
+            </div>
+        </div>
+       </div>
+      </div>
+    </main>
+    
+</body>
+</html>
