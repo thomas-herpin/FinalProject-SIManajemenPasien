@@ -94,13 +94,10 @@ $snapToken = \Midtrans\Snap::getSnapToken($params);
             <div class="col-4">
               <label class="payment-method active">
                 <input type="radio" name="payment" value="bca" checked/>
-<<<<<<< HEAD:pembayaran.php
-                <img src="image\1280px-Bank_Central_Asia.svg.png" alt="BCA"/>
+                
                 <div>BCA</div>
-=======
                 <img src="../../assets/logo_BCA.png" alt="BCA"/>
                 <div>Transfer BCA</div>
->>>>>>> 04a712950b465724f7d3add19ae220f5f5c3aaa1:pages/user/pembayaran.php
               </label>
             </div>
             <div class="col-4">
@@ -113,11 +110,7 @@ $snapToken = \Midtrans\Snap::getSnapToken($params);
             <div class="col-4">
               <label class="payment-method">
                 <input type="radio" name="payment" value="shopeepay"/>
-<<<<<<< HEAD:pembayaran.php
-                <img src="image\shopeepay-logo_brandlogos.net_yl7nf-512x512.png" alt="ShopeePay"/>
-=======
                 <img src="../../assets/logo_shopeepay.png" alt="ShopeePay"/>
->>>>>>> 04a712950b465724f7d3add19ae220f5f5c3aaa1:pages/user/pembayaran.php
                 <div>ShopeePay</div>
               </label>
             </div>
