@@ -94,10 +94,8 @@ $snapToken = \Midtrans\Snap::getSnapToken($params);
             <div class="col-4">
               <label class="payment-method active">
                 <input type="radio" name="payment" value="bca" checked/>
-                
-                <div>BCA</div>
                 <img src="../../assets/logo_BCA.png" alt="BCA"/>
-                <div>Transfer BCA</div>
+                <div>BCA</div>
               </label>
             </div>
             <div class="col-4">
