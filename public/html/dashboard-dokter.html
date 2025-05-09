@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Dokter - Medical Health Center</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/dashboard-dokter.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../js/auth-handler.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/api/auth/me', {
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Not authenticated');
+                }
+                return response.json();
+            })
+            .then(userData => {
+                if (userData.role !== 'doctor') {
+                    alert('Anda tidak memiliki izin untuk mengakses halaman ini');
+                    window.location.href = '/';
+                }
+                const welcomeMessage = document.getElementById('welcome-message');
+                if (welcomeMessage) {
+                    welcomeMessage.textContent = `Selamat datang Dr. ${userData.name} | `;
+                }
+                loadPatientList(userData.id);
+            })
+            .catch(error => {
+                console.error('Authentication error:', error);
+                window.location.href = '/';
+            });
+        });
+        
+        async function loadPatientList(doctorId) {
+            try {
+                const response = await fetch(`/api/doctor/${doctorId}/patients`, {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch patients');
+                }
+                
+                const patients = await response.json();
+                const patientSelect = document.getElementById('patientSelect');
+                
+                if (patientSelect && patients.length > 0) {
+                    patientSelect.innerHTML = '<option value="">-- Pilih Pasien --</option>';
+                    patients.forEach(patient => {
+                        const option = document.createElement('option');
+                        option.value = patient.id;
+                        option.textContent = patient.name;
+                        patientSelect.appendChild(option);
+                    });
+                } else if (patientSelect) {
+                    patientSelect.innerHTML = '<option value="">Tidak ada pasien</option>';
+                }
+            } catch (error) {
+                console.error('Error loading patients:', error);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-info fixed-top">
+        <a class="navbar-brand text-white" href="#">
+            <span id="welcome-message">Selamat datang Dokter</span>
+            <b>Sistem Informasi Rumah Sakit</b>
+        </a>
+
+        <div class="icon ml-auto">
+            <button id="logoutBtn" class="btn p-0 text-white bg-transparent border-0" data-toggle="tooltip"
+                title="Logout">
+                <i class="fa-solid fa-right-from-bracket mr-3"></i> Logout
+            </button>
+        </div>
+    </nav>
+
+    <div class="row no-gutters mt-5">
+        <div class="col-md-2 bg-dark mt-2 pr-3 pt-4">
+            <ul class="nav flex-column ml-3 mb-5">
+                <li class="nav-item">
+                    <a class="nav-link active text-white" href="/dashboard-dokter"><i
+                            class="fa-solid fa-table-columns mr-2"></i>Dashboard</a>
+                    <hr class="bg-secondary">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/jadwal-dokter"><i
+                            class="fa-solid fa-calendar-days mr-2"></i>Jadwal
+                        Konsultasi</a>
+                    <hr class="bg-secondary">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/pasien-dokter"><i
+                            class="fa-solid fa-hospital-user mr-2"></i>Pasien Saya</a>
+                    <hr class="bg-secondary">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/laporan-dokter"><i
+                            class="fa-solid fa-chart-simple mr-2"></i>Laporan Jam Kerja</a>
+                    <hr class="bg-secondary">
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10 p-5 pt-2">
+            <h3><i class="fa-solid fa-table-columns mr-2"></i> DASHBOARD</h3>
+            <hr>
+
+            <div class="alert alert-warning" id="notifikasiJadwal" style="display: none;">
+                <i class="fa-solid fa-bell mr-2"></i>
+                <span id="isiNotifikasi"></span>
+            </div>
+
+            <div class="row text-white">
+                <div class="card bg-warning ml-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa-solid fa-calendar-days mr-2"></i>
+                        </div>
+                        <h5 class="card-title">Jadwal Konsultasi</h5>
+                        <div id="appointmentsCount" class="display-4">Loading...</div>
+                        <a href="/jadwal-dokter">
+                            <p class="card-text text-white">Lihat Detail <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card bg-success ml-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa-solid fa-hospital-user mr-2"></i>
+                        </div>
+                        <h5 class="card-title">Pasien Saya</h5>
+                        <div id="patientsCount" class="display-4">Loading...</div>
+                        <a href="/pasien-dokter">
+                            <p class="card-text text-white">Lihat Detail <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card bg-primary ml-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa-solid fa-chart-simple mr-2"></i>
+                        </div>
+                        <h5 class="card-title">Laporan Jam Kerja</h5>
+                        <div id="workHoursCount" class="display-4">Loading...</div>
+                        <a href="/laporan-dokter">
+                            <p class="card-text text-white">Lihat Detail <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mt-4">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="fa-solid fa-paper-plane mr-2"></i> Kirim Pemberitahuan ke Pasien</h5>
+                </div>
+                <div class="card-body">
+                    <form id="sendNotificationForm">
+                        <div class="form-group">
+                            <label for="patientSelect">Pilih Pasien:</label>
+                            <select class="form-control" id="patientSelect" required>
+                                <option value="">-- Pilih Pasien --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="notificationMessage">Pesan:</label>
+                            <textarea class="form-control" id="notificationMessage" rows="3" placeholder="Tulis pesan untuk pasien..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa-solid fa-paper-plane mr-2"></i> Kirim Pemberitahuan
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="card mt-4">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="fa-solid fa-calendar-check mr-2"></i> Jadwal Hari Ini</h5>
+                </div>
+                <div class="card-body">
+                    <div id="todayAppointmentsContainer">
+                        <p class="text-center text-muted">Memuat jadwal konsultasi hari ini...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/js/doctor-dashboard.js"></script>
+    <script src="/js/logout.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rekam Medis - Medical Health Center</title>
+    <link rel="stylesheet" href="../css/rekam-medis.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../js/auth-handler.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!AuthHandler.isAuthenticated()) {
+                setTimeout(() => {
+                    AuthHandler.redirectToLogin();
+                }, 100);
+                return;
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="navbar-left">
+            <a href="/dashboard">
+                <img src="../assets/logo.svg" alt="Medical Health Center Logo" class="logo" />
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="/dashboard">Home</a>
+            <a href="/dokter">Dokter</a>
+            <a href="/rekam-medis">Rekam Medis</a>
+        </nav>
+
+        <div class="navbar-right">
+            <div class="notif-btn">
+                <a href="/notifikasi">
+                    <i class="fa-regular fa-bell" style="color: #2859BC;"></i>
+                </a>
+            </div>
+
+            <div class="profile-dropdown">
+                <button class="profile-btn">
+                    <i class="fa-regular fa-user" style="color: #2859BC; font-size: 18px;"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="/profil">Profil</a>
+                    <a href="#" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-container">
+        <section class="rekam-medis-section">
+            <h1>Rekam Medis</h1>
+            
+            <div class="info-alert">
+                <i class="fas fa-info-circle"></i>
+                <p>Halaman ini menampilkan riwayat medis Anda, termasuk hasil pemeriksaan, diagnosis, dan resep obat.</p>
+            </div>
+            
+            <div class="records-container">
+                <div class="records-header">
+                    <h2>Riwayat Medis Anda</h2>
+                    <div class="filter-container">
+                        <label for="filter">Filter:</label>
+                        <select id="filter" class="filter-dropdown">
+                            <option value="all">Semua</option>
+                            <option value="recent">Terbaru</option>
+                            <option value="lab">Hasil Lab</option>
+                            <option value="prescription">Resep</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="records-list" class="records-list">
+                    <div class="empty-state">
+                        <i class="far fa-clipboard"></i>
+                        <p>Belum ada rekam medis yang tersedia</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="/js/common-dropdown.js"></script>
+    <script src="../js/rekam-medis.js"></script>
+    <script src="../js/logout.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileBtn = document.querySelector('.profile-btn');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            
+            if (profileBtn && dropdownMenu) {
+                profileBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (dropdownMenu.style.display === 'flex' || dropdownMenu.style.display === 'block') {
+                        dropdownMenu.style.display = 'none';
+                    } else {
+                        dropdownMenu.style.display = 'flex';
+                    }
+                });
+                
+                document.addEventListener('click', function() {
+                    if (dropdownMenu.style.display === 'flex' || dropdownMenu.style.display === 'block') {
+                        dropdownMenu.style.display = 'none';
+                    }
+                });
+                
+                dropdownMenu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+        });
+    </script>
+</body>
+
+</html> 

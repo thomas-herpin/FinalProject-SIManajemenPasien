@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daftar Dokter - Medical Health Center</title>
+    <link rel="stylesheet" href="../css/user-fulldoctor.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../js/auth-handler.js"></script>
+    <script>
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!AuthHandler.isAuthenticated()) {
+                // Add a small delay to prevent too rapid redirects
+                setTimeout(() => {
+                    AuthHandler.redirectToLogin();
+                }, 100);
+                return;
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="navbar-left">
+            <a href="/dashboard-user">
+                <img src="../assets/logo.svg" alt="Medical Health Center Logo" class="logo" />
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="/dashboard">Home</a>
+            <a href="/dokter">Dokter</a>
+            <a href="/rekam-medis">Rekam Medis</a>
+        </nav>
+
+        <div class="navbar-right">
+            <button class="notif-btn">
+                <a href="/notifikasi" class="notif-btn">
+                    <i class="fa-regular fa-bell" style="color: #2859BC;"></i>
+                </a>
+            </button>
+
+            <div class="profile-dropdown">
+                <button class="profile-btn">
+                    <i class="fa-regular fa-user" style="color: #2859BC; font-size: 18px;"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="/profil">Profil</a>
+                    <a href="#" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 1 -->
+    <section class="hero">
+        <h1>Cari Dokter Disini</h1>
+
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Cari dokter, spesialis, atau layanan...">
+            <button class="search-button">
+                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Section 2  -->
+    <section class="doctor-section">
+        <div class="doctor-grid" id="doctorGrid">
+            <!-- Doctor cards will be dynamically inserted here -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination">
+            <!-- Pagination buttons will be dynamically inserted here -->
+        </div>
+    </section>
+
+    <script>
+        // Get search term from URL if present
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchTerm = urlParams.get('search') || '';
+            const searchInput = document.querySelector('.search-input');
+            
+            // Set the search input value
+            if (searchInput && searchTerm) {
+                searchInput.value = searchTerm;
+            }
+            
+            // Fetch doctors with the search term
+            fetchDoctors(1, searchTerm);
+            
+            // Setup search button
+            const searchButton = document.querySelector('.search-button');
+            if (searchButton && searchInput) {
+                searchButton.addEventListener('click', () => {
+                    fetchDoctors(1, searchInput.value.trim());
+                });
+                
+                // Search on Enter key
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        fetchDoctors(1, searchInput.value.trim());
+                    }
+                });
+            }
+        });
+
+        /**
+         * Make an authenticated fetch request
+         * @param {string} url - URL to fetch
+         * @param {Object} options - Fetch options
+         * @returns {Promise<any>} - Response data
+         */
+        async function fetchWithAuth(url, options = {}) {
+            // No need to add token, it's sent automatically as an HTTP-only cookie
+            const headers = {
+                'Content-Type': 'application/json',
+                ...(options.headers || {})
+            };
+            
+            try {
+                const response = await fetch(url, {
+                    ...options,
+                    headers,
+                    credentials: 'include' // Include cookies with request
+                });
+                
+                // Handle unauthorized error
+                if (response.status === 401) {
+                    AuthHandler.clearAuth();
+                    window.location.href = '/auth';
+                    return null;
+                }
+                
+                // Parse JSON if possible
+                if (response.headers.get('content-type')?.includes('application/json')) {
+                    return await response.json();
+                }
+                
+                return response;
+            } catch (error) {
+                console.error('Fetch error:', error);
+                throw error;
+            }
+        }
+
+        // Function to fetch doctors from the API
+        async function fetchDoctors(page = 1, searchTerm = '') {
+            try {
+                console.log('Fetching doctors with search term:', searchTerm);
+                let url = '/api/doctors';
+                const params = new URLSearchParams();
+                
+                if (searchTerm) {
+                    params.append('search', searchTerm);
+                }
+                
+                if (page > 1) {
+                    params.append('page', page);
+                }
+                
+                // Add the parameters to the URL if we have any
+                if (params.toString()) {
+                    url += `?${params.toString()}`;
+                }
+                
+                console.log('Fetching from URL:', url);
+                
+                try {
+                    const response = await fetch(url, {
+                        method: 'GET',
+                        credentials: 'include',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    console.log('Response status:', response.status);
+                    
+                    if (!response.ok) {
+                        throw new Error(`API returned status ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+                    console.log('Doctors data received:', data);
+                    
+                    // If the API returns an array directly, wrap it for consistency
+                    if (Array.isArray(data)) {
+                        displayDoctors({ doctors: data });
+                    } else {
+                        displayDoctors(data);
+                    }
+                } catch (error) {
+                    console.error('API error:', error);
+                    
+                    // If API fails, show error message but don't redirect
+                    document.getElementById('doctorGrid').innerHTML = 
+                        '<p class="error-message">Failed to load doctors. Please try again later.</p>';
+                }
+            } catch (error) {
+                console.error('Error in fetchDoctors:', error);
+                document.getElementById('doctorGrid').innerHTML = 
+                    '<p class="error-message">Failed to load doctors. Please try again later.</p>';
+            }
+        }
+
+        // Function to display doctors in the grid
+        function displayDoctors(data) {
+            const doctorGrid = document.getElementById('doctorGrid');
+            const pagination = document.getElementById('pagination');
+            const searchInput = document.querySelector('.search-input');
+            doctorGrid.innerHTML = '';
+            pagination.innerHTML = '';
+
+            // If no doctors or empty data
+            if (!data || !data.doctors || data.doctors.length === 0) {
+                doctorGrid.innerHTML = '<p class="no-results">No doctors found matching your search criteria.</p>';
+                return;
+            }
+
+            // Display doctors
+            data.doctors.forEach(doctor => {
+                const doctorCard = document.createElement('div');
+                doctorCard.className = 'doctor-card';
+                
+                // Create and append image
+                const img = document.createElement('img');
+                img.src = doctor.image_url || '../assets/doctor-placeholder.jpg';
+                img.alt = doctor.name || 'Doctor';
+                doctorCard.appendChild(img);
+
+                // Create doctor info container
+                const doctorInfo = document.createElement('div');
+                doctorInfo.className = 'doctor-info';
+
+                // Add name
+                const name = document.createElement('h3');
+                name.textContent = doctor.name || 'Doctor Name';
+                doctorInfo.appendChild(name);
+
+                // Add specialty
+                const specialty = document.createElement('p');
+                specialty.className = 'specialty';
+                specialty.textContent = doctor.specialty || 'General Practitioner';
+                doctorInfo.appendChild(specialty);
+
+                // Add rating if available
+                if (doctor.rating) {
+                    const ratingDiv = document.createElement('div');
+                    ratingDiv.className = 'doctor-rating';
+                    
+                    // Add stars
+                    const rating = parseFloat(doctor.rating) || 0;
+                    const starsHtml = generateStarsHtml(rating);
+                    ratingDiv.innerHTML = starsHtml;
+                    
+                    // Add rating value and review count
+                    const ratingText = document.createElement('span');
+                    ratingText.textContent = `${rating.toFixed(1)} (${doctor.review_count || 0})`;
+                    ratingDiv.appendChild(ratingText);
+                    
+                    doctorInfo.appendChild(ratingDiv);
+                }
+
+                // Add booking button
+                const bookingLink = document.createElement('a');
+                bookingLink.href = `/booking?id=${doctor.id}`;
+                
+                const bookingButton = document.createElement('button');
+                bookingButton.className = 'detail-button';
+                bookingButton.textContent = 'Buat Janji';
+                bookingLink.appendChild(bookingButton);
+                doctorInfo.appendChild(bookingLink);
+
+                doctorCard.appendChild(doctorInfo);
+                doctorGrid.appendChild(doctorCard);
+            });
+
+            // Display pagination if available
+            if (data.pagination) {
+                const { currentPage, totalPages } = data.pagination;
+                
+                // Previous button
+                if (currentPage > 1) {
+                    const prevButton = document.createElement('button');
+                    prevButton.className = 'page-btn';
+                    prevButton.textContent = '←';
+                    prevButton.onclick = () => fetchDoctors(currentPage - 1, searchInput.value.trim());
+                    pagination.appendChild(prevButton);
+                }
+
+                // Page numbers
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageButton = document.createElement('button');
+                    pageButton.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+                    pageButton.textContent = i;
+                    pageButton.onclick = () => fetchDoctors(i, searchInput.value.trim());
+                    pagination.appendChild(pageButton);
+                }
+
+                // Next button
+                if (currentPage < totalPages) {
+                    const nextButton = document.createElement('button');
+                    nextButton.className = 'page-btn';
+                    nextButton.textContent = '→';
+                    nextButton.onclick = () => fetchDoctors(currentPage + 1, searchInput.value.trim());
+                    pagination.appendChild(nextButton);
+                }
+            }
+        }
+
+        // Helper function to generate HTML for star ratings
+        function generateStarsHtml(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating - fullStars >= 0.5;
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            
+            let html = '';
+            
+            // Add full stars
+            for (let i = 0; i < fullStars; i++) {
+                html += '<i class="fas fa-star"></i>';
+            }
+            
+            // Add half star if needed
+            if (hasHalfStar) {
+                html += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            // Add empty stars
+            for (let i = 0; i < emptyStars; i++) {
+                html += '<i class="far fa-star"></i>';
+            }
+            
+            return html;
+        }
+    </script>
+    <script src="/js/common-dropdown.js"></script>
+    <script src="../js/logout.js"></script>
+    <script>
+        // Inline dropdown script
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileBtn = document.querySelector('.profile-btn');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            
+            if (profileBtn && dropdownMenu) {
+                profileBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (dropdownMenu.style.display === 'flex' || dropdownMenu.style.display === 'block') {
+                        dropdownMenu.style.display = 'none';
+                    } else {
+                        dropdownMenu.style.display = 'flex';
+                    }
+                });
+                
+                document.addEventListener('click', function() {
+                    if (dropdownMenu.style.display === 'flex' || dropdownMenu.style.display === 'block') {
+                        dropdownMenu.style.display = 'none';
+                    }
+                });
+                
+                dropdownMenu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

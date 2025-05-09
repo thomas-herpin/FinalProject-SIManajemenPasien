@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pembayaran - Medical Health Center</title>
+    <link rel="stylesheet" href="/css/dashboard-user.css" />
+    <link rel="stylesheet" href="/css/payment.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="/js/auth-handler.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!AuthHandler.isAuthenticated()) {
+                setTimeout(() => {
+                    AuthHandler.redirectToLogin();
+                }, 100);
+                return;
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="navbar-left">
+            <a href="/dashboard">
+                <img src="/assets/logo.svg" alt="Medical Health Center Logo" class="logo" />
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="/dashboard">Home</a>
+            <a href="/dokter">Dokter</a>
+            <a href="/rekam-medis">Rekam Medis</a>
+        </nav>
+
+        <div class="navbar-right">
+            <div class="notif-btn">
+                <a href="/notifikasi">
+                    <i class="fa-regular fa-bell" style="color: #2859BC;"></i>
+                </a>
+            </div>
+
+            <div class="profile-dropdown">
+                <button class="profile-btn">
+                    <i class="fa-regular fa-user" style="color: #2859BC; font-size: 18px;"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="/profil">Profil</a>
+                    <a href="#" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-container">
+        <div class="payment-page">
+            <h1>Pembayaran Janji Temu</h1>
+
+            <div class="payment-card">
+                <div class="payment-summary">
+                    <h2>Ringkasan Pembayaran</h2>
+                    <div id="appointmentDetails" class="appointment-details">
+                        <div class="detail-row">
+                            <span class="label">Nama Dokter:</span>
+                            <span class="value" id="doctorName">Loading...</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Spesialisasi:</span>
+                            <span class="value" id="doctorSpecialty">Loading...</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Tanggal:</span>
+                            <span class="value" id="appointmentDate">Loading...</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Waktu:</span>
+                            <span class="value" id="appointmentTime">Loading...</span>
+                        </div>
+                        <div class="detail-row total">
+                            <span class="label">Total Biaya:</span>
+                            <span class="value" id="totalAmount">Rp 250.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment-methods">
+                    <h2>Metode Pembayaran</h2>
+                    <div class="methods-container">
+                        <div class="method-option">
+                            <input type="radio" id="bank-transfer" name="payment-method" value="bank-transfer" checked>
+                            <label for="bank-transfer">
+                                <i class="fas fa-university"></i>
+                                <span>Transfer Bank</span>
+                            </label>
+                        </div>
+                        <div class="method-option">
+                            <input type="radio" id="credit-card" name="payment-method" value="credit-card">
+                            <label for="credit-card">
+                                <i class="far fa-credit-card"></i>
+                                <span>Kartu Kredit</span>
+                            </label>
+                        </div>
+                        <div class="method-option">
+                            <input type="radio" id="e-wallet" name="payment-method" value="e-wallet">
+                            <label for="e-wallet">
+                                <i class="fas fa-wallet"></i>
+                                <span>E-Wallet</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment-actions">
+                    <button id="backButton" class="back-button">
+                        <i class="fas fa-arrow-left"></i> Kembali
+                    </button>
+                    <button id="payButton" class="pay-button">
+                        Bayar Sekarang <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loadingIndicator" class="loading-indicator">
+        <div class="spinner"></div>
+    </div>
+
+    <div id="successPopup" class="popup-overlay">
+        <div class="popup-content">
+            <button class="close-btn">&times;</button>
+            <div class="popup-icon success">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Pembayaran Berhasil!</h2>
+            <p>Pembayaran Anda telah berhasil diproses. Detail pembayaran telah dikirim ke email Anda.</p>
+            <a href="/profil" class="btn-primary">Lihat Janji Temu</a>
+        </div>
+    </div>
+
+    <div id="errorPopup" class="popup-overlay">
+        <div class="popup-content">
+            <button class="close-btn">&times;</button>
+            <div class="popup-icon error">
+                <i class="fas fa-times-circle"></i>
+            </div>
+            <h2>Pembayaran Gagal</h2>
+            <p>Terjadi kesalahan saat memproses pembayaran Anda. Silakan coba lagi.</p>
+            <button class="btn-secondary retry-btn">Coba Lagi</button>
+        </div>
+    </div>
+
+    <script src="/js/common-dropdown.js"></script>
+    <script src="/js/payment.js"></script>
+    <script src="/js/logout.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileBtn = document.querySelector('.profile-btn');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            
+            if (profileBtn && dropdownMenu) {
+                profileBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (dropdownMenu.style.display === 'flex' || dropdownMenu.style.display === 'block') {
+                        dropdownMenu.style.display = 'none';
+                    } else {
+                        dropdownMenu.style.display = 'flex';
+                    }
+                });
+                
+                document.addEventListener('click', function() {
+                    if (dropdownMenu.style.display === 'flex' || dropdownMenu.style.display === 'block') {
+                        dropdownMenu.style.display = 'none';
+                    }
+                });
+                
+                dropdownMenu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+        });
+    </script>
+</body>
+
+</html> 

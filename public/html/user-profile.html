@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil - Medical Health Center</title>
+    <link rel="stylesheet" href="/css/dashboard-user.css" />
+    <link rel="stylesheet" href="/css/user-profile.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="/js/auth-handler.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                const isAuthenticated = AuthHandler.isAuthenticated();
+                if (!isAuthenticated) {
+                    AuthHandler.redirectToLogin();
+                    return;
+                }
+                
+            } catch (error) {
+                console.error('Error checking authentication:', error);
+                AuthHandler.redirectToLogin();
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="navbar-left">
+            <a href="/dashboard-user">
+                <img src="/assets/logo.svg" alt="Medical Health Center Logo" class="logo" />
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="/dashboard">Home</a>
+            <a href="/dokter">Dokter</a>
+            <a href="/rekam-medis">Rekam Medis</a>
+        </nav>
+
+        <div class="navbar-right">
+            <div class="notif-btn">
+                <a href="/notifikasi">
+                    <i class="fa-regular fa-bell" style="color: #2859BC;"></i>
+                    <span class="notification-badge" id="notification-badge">0</span>
+                </a>
+            </div>
+
+            <div class="profile-dropdown">
+                <button class="profile-btn" id="profileToggle">
+                    <i class="fa-regular fa-user" style="color: #2859BC; font-size: 18px;"></i>
+                </button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="/profil" class="active">Profil</a>
+                    <a href="#" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div id="userMessage" class="alert alert-info" style="display: none;">
+            <i class="fas fa-info-circle"></i>
+            <span id="messageText"></span>
+        </div>
+        
+        <section class="user-info" style="display: none;">            
+            <div class="user-details">
+                <h2>Informasi Profil</h2>
+                <p id="userLoadingMessage">Memuat informasi pengguna...</p>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Nama</span>
+                        <span class="info-value" id="userName">Loading...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Email</span>
+                        <span class="info-value" id="userEmail">Loading...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Nomor Telepon</span>
+                        <span class="info-value" id="userPhone">Loading...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Tanggal Bergabung</span>
+                        <span class="info-value" id="userJoinDate">Loading...</span>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" id="editProfileBtn">
+                    <i class="fas fa-edit"></i> Edit Profil
+                </button>
+            </div>
+        </section>
+
+        <section class="appointments-section">
+            <h2>Janji Dokter</h2>
+            <p id="appointmentsLoading">Memuat janji dokter...</p>
+            <div id="appointments"></div>
+        </section>
+    </div>
+
+    <div class="modal" id="editProfileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-edit"></i> Edit Profil</h2>
+                <button type="button" class="close-modal" aria-label="Close modal">&times;</button>
+            </div>
+            
+            <div id="editProfileMessage" class="alert" style="display: none;">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="editMessageText"></span>
+            </div>
+            
+            <form id="editProfileForm">
+                <div class="form-group">
+                    <label for="editName">Nama Lengkap</label>
+                    <input type="text" id="editName" name="name" class="form-control" required placeholder="Masukkan nama lengkap Anda">
+                </div>
+                
+                <div class="form-group">
+                    <label for="editEmail">Email</label>
+                    <input type="email" id="editEmail" name="email" class="form-control" required placeholder="Masukkan alamat email Anda">
+                </div>
+                
+                <div class="form-group">
+                    <label for="editPhone">Nomor Telepon</label>
+                    <input type="tel" id="editPhone" name="phone" class="form-control" placeholder="Masukkan nomor telepon Anda">
+                </div>
+                
+                <div class="form-group">
+                    <label for="editBirthdate">Tanggal Lahir</label>
+                    <input type="date" id="editBirthdate" name="birthdate" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="editGender">Jenis Kelamin</label>
+                    <select id="editGender" name="gender" class="form-control">
+                        <option value="">Pilih jenis kelamin</option>
+                        <option value="male">Laki-laki</option>
+                        <option value="female">Perempuan</option>
+                        <option value="other">Lainnya</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editAddress">Alamat</label>
+                    <textarea id="editAddress" name="address" class="form-control" rows="3" placeholder="Masukkan alamat lengkap Anda"></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Simpan Perubahan
+                    </button>
+                    <button type="button" class="btn btn-secondary close-modal">
+                        <i class="fas fa-times"></i> Batal
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/common-dropdown.js"></script>
+    <script src="/js/user-profile.js"></script>
+    <script src="/js/logout.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileBtn = document.querySelector('.profile-btn');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            
+            if (profileBtn && dropdownMenu) {
+                profileBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (dropdownMenu.style.display === 'flex' || dropdownMenu.style.display === 'block') {
+                        dropdownMenu.style.display = 'none';
+                    } else {
+                        dropdownMenu.style.display = 'flex';
+                    }
+                });
+                
+                document.addEventListener('click', function() {
+                    if (dropdownMenu.style.display === 'flex' || dropdownMenu.style.display === 'block') {
+                        dropdownMenu.style.display = 'none';
+                    }
+                });
+                
+                dropdownMenu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+        });
+    </script>
+</body>
+
+</html> 
