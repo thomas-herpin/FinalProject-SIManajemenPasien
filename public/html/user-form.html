@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Appointment - Medical Health Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/user-form.css">
+    <script src="../js/auth-handler.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!AuthHandler.isAuthenticated()) {
+                setTimeout(() => {
+                    AuthHandler.redirectToLogin();
+                }, 100);
+                return;
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="navbar-left">
+            <a href="/dashboard">
+                <img src="../assets/logo.svg" alt="Medical Health Center Logo" class="logo" />
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="/dashboard">Home</a>
+            <a href="/dokter">Dokter</a>
+            <a href="/rekam-medis">Rekam Medis</a>
+        </nav>
+
+        <div class="navbar-right">
+            <div class="notif-btn">
+                <a href="/notifikasi">
+                    <i class="fa-regular fa-bell" style="color: #2859BC;"></i>
+                </a>
+            </div>
+
+            <div class="profile-dropdown">
+                <button class="profile-btn">
+                    <i class="fa-regular fa-user" style="color: #2859BC; font-size: 18px;"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="/profil">Profil</a>
+                    <a href="#" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-container">
+        <div class="form-page">
+            <div class="page-title">
+                <h2>Buat Janji dengan Dokter</h2>
+            </div>
+
+            <div class="form-card">
+                <div class="appointment-summary" id="appointmentSummary">
+                </div>
+
+                <div class="form-section">
+                    <h3>Konfirmasi Janji Temu</h3>
+                    <form id="appointmentForm">
+                        <input type="hidden" id="userId" name="userId">
+                        <input type="hidden" id="name" name="name">
+                        <input type="hidden" id="email" name="email">
+                        <input type="hidden" id="phone" name="phone">
+                        
+                        <div class="form-group">
+                            <label for="message">Catatan Tambahan (Opsional)</label>
+                            <textarea id="message" name="message" class="form-control" placeholder="Silakan sertakan keluhan atau pertanyaan khusus yang ingin Anda sampaikan kepada dokter..."></textarea>
+                        </div>
+                        
+                        <div class="form-buttons">
+                            <button type="button" id="backButton" class="btn secondary-btn">
+                                <i class="fas fa-arrow-left"></i> Kembali
+                            </button>
+                            <button type="submit" id="submitAppointment" class="btn primary-btn">
+                                Konfirmasi Janji <i class="fas fa-check"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loadingIndicator">
+        <div class="spinner"></div>
+    </div>
+
+    <div id="popup" class="popup-overlay">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup()">&times;</button>
+            <div class="popup-icon">
+                <i class="fa-regular fa-circle-check"></i>
+            </div>
+            <h2>Berhasil diajukan!</h2>
+            <p>Janji temu Anda telah berhasil dibuat. Kami akan mengirimkan konfirmasi melalui email dan notifikasi.</p>
+            <a href="/profil" class="status-btn">Lihat Janji Temu</a>
+        </div>
+    </div>
+
+    <div id="errorPopup" class="popup-overlay">
+        <div class="popup-content error">
+            <button class="close-btn" onclick="closeErrorPopup()">&times;</button>
+            <div class="popup-icon">
+                <i class="fa-regular fa-circle-xmark"></i>
+            </div>
+            <h2>Gagal membuat janji temu</h2>
+            <p id="errorMessage">Terjadi kesalahan. Silakan coba lagi.</p>
+            <button class="retry-btn" onclick="closeErrorPopup()">Coba Lagi</button>
+        </div>
+    </div>
+
+    <script src="../js/user-form.js"></script>
+    <script src="../js/logout.js"></script>
+</body>
+
+</html>

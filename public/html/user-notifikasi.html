@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifikasi - Medical Health Center</title>
+    <link rel="stylesheet" href="/css/dashboard-user.css">
+    <link rel="stylesheet" href="/css/user-notifikasi.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../js/auth-handler.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!AuthHandler.isAuthenticated()) {
+                setTimeout(() => {
+                    AuthHandler.redirectToLogin();
+                }, 100);
+                return;
+            }
+        });
+    </script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar-left">
+            <a href="/dashboard-user">
+                <img src="/assets/logo.svg" alt="Medical Health Center Logo" class="logo" />
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="/dashboard">Home</a>
+            <a href="/dokter">Dokter</a>
+            <a href="/rekam-medis">Rekam Medis</a>
+        </nav>
+
+        <div class="navbar-right">
+            <div class="notif-btn active">
+                <a href="/notifikasi">
+                    <i class="fa-regular fa-bell" style="color: #2859BC;"></i>
+                    <span class="notification-badge" id="notification-badge">0</span>
+                </a>
+            </div>
+
+            <div class="profile-dropdown">
+                <button class="profile-btn" id="profileToggle">
+                    <i class="fa-regular fa-user" style="color: #2859BC; font-size: 18px;"></i>
+                </button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="/profil">Profil</a>
+                    <a href="#" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="notification-section">
+        <h2>Notifikasi</h2>
+        
+        <div class="notification-container">
+            <div class="notification-header">
+                <h3>Semua Notifikasi</h3>
+                <button class="mark-all-read" id="mark-all-read">Tandai Semua Sudah Dibaca</button>
+            </div>
+            <div class="notifications-list" id="notifications-list">
+                <div class="loading-indicator">
+                    <i class="fas fa-circle-notch fa-spin"></i>
+                    <span>Memuat notifikasi...</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/js/common-dropdown.js"></script>
+    <script src="../js/auth-handler.js"></script>
+    <script src="../js/logout.js"></script>
+    <script src="../js/user-notifikasi.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileBtn = document.querySelector('.profile-btn');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            
+            if (profileBtn && dropdownMenu) {
+                profileBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (dropdownMenu.style.display === 'flex' || dropdownMenu.style.display === 'block') {
+                        dropdownMenu.style.display = 'none';
+                    } else {
+                        dropdownMenu.style.display = 'flex';
+                    }
+                });
+                
+                document.addEventListener('click', function() {
+                    if (dropdownMenu.style.display === 'flex' || dropdownMenu.style.display === 'block') {
+                        dropdownMenu.style.display = 'none';
+                    }
+                });
+                
+                dropdownMenu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

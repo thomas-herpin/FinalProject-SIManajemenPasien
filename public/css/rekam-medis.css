@@ -1,0 +1,368 @@
+@import url('../css/global.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body {
+  background-color: #f1f6fd;
+  font-family: 'Inter', sans-serif;
+  color: #1e1e1e;
+  overflow-x: hidden;
+}
+
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background-color: transparent;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 130px;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #333;
+  margin: 0 20px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+  color: #2859BC;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.notif-btn {
+  font-size: 24px;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ff4444;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.notif-btn i:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+.profile-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  display: none;
+  min-width: 150px;
+  z-index: 999;
+  flex-direction: column;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0;
+}
+
+.rekam-medis-section {
+  padding: 20px 0;
+}
+
+.rekam-medis-section h1 {
+  color: #2859BC;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.info-alert {
+  background-color: #e3f2fd;
+  border-left: 4px solid #2196f3;
+  padding: 16px;
+  margin-bottom: 30px;
+  border-radius: 6px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.info-alert i {
+  color: #2196f3;
+  font-size: 22px;
+  margin-right: 12px;
+  margin-top: 2px;
+}
+
+.info-alert p {
+  line-height: 1.5;
+  color: #333;
+}
+
+.records-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+  margin-bottom: 30px;
+}
+
+.records-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 16px;
+}
+
+.records-header h2 {
+  color: #333;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-container label {
+  font-size: 14px;
+  color: #666;
+}
+
+.filter-dropdown {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: white;
+  outline: none;
+  cursor: pointer;
+}
+
+.filter-dropdown:focus {
+  border-color: #2859BC;
+}
+
+.records-list {
+  min-height: 400px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  color: #999;
+  text-align: center;
+}
+
+.empty-state i {
+  font-size: 60px;
+  margin-bottom: 16px;
+  color: #ddd;
+}
+
+.empty-state p {
+  font-size: 16px;
+}
+
+.record-item {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.record-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+}
+
+.record-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.record-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #2859BC;
+}
+
+.record-date {
+  font-size: 14px;
+  color: #777;
+}
+
+.record-doctor {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.record-details {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.record-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.tag-consultation {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.tag-lab {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.tag-prescription {
+  background-color: #fff3e0;
+  color: #f57c00;
+}
+
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 15px 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+  
+  .nav-menu {
+    gap: 15px;
+  }
+  
+  .nav-menu a {
+    margin: 0 10px;
+  }
+  
+  .records-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .filter-container {
+    width: 100%;
+  }
+  
+  .filter-dropdown {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 10px 15px;
+  }
+  
+  .nav-menu {
+    gap: 10px;
+  }
+  
+  .nav-menu a {
+    margin: 0 5px;
+    font-size: 14px;
+  }
+  
+  .rekam-medis-section h1 {
+    font-size: 24px;
+  }
+  
+  .records-container {
+    padding: 16px;
+  }
+} 

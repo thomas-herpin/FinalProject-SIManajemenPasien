@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard User - Medical Health Center</title>
+    <link rel="stylesheet" href="/css/dashboard-user.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../js/auth-handler.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log("Dashboard page loaded, checking authentication...");
+            console.log("Cookie in dashboard:", document.cookie);
+            
+            try {
+            if (!AuthHandler.isAuthenticated()) {
+                    console.log("Not authenticated based on cookie check, redirecting to login");
+                    return window.location.href = '/auth.html';
+                }
+            } catch (error) {
+                console.error("Authentication error:", error);
+                return window.location.href = '/auth.html';
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="navbar-left">
+            <a href="/dashboard">
+                <img src="/assets/logo.svg" alt="Medical Health Center Logo" class="logo" />
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="/dashboard">Home</a>
+            <a href="/dokter">Dokter</a>
+            <a href="/rekam-medis">Rekam Medis</a>
+        </nav>
+
+        <div class="navbar-right">
+            <div class="notif-btn">
+                <a href="/notifikasi">
+                    <i class="fa-regular fa-bell" style="color: #2859BC;"></i>
+                </a>
+            </div>
+
+            <div class="profile-dropdown">
+                <button class="profile-btn">
+                    <i class="fa-regular fa-user" style="color: #2859BC; font-size: 18px;"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="/profil">Profil</a>
+                    <a href="#" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-container">
+    <section class="hero">
+            <h1 id="welcomeMessage">Cari Dokter? Temukan & Buat Janji dengan Mudah!</h1>
+        <p class="hero-subtitle">
+            Halaman ini menampilkan informasi dokter dan layanan medis rumah sakit untuk memberikan kemudahan dan
+            kenyamanan kepada pasien dalam mengakses layanan kesehatan.
+        </p>
+
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Cari dokter, spesialis, atau layanan...">
+            <button class="search-button">
+                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+            </button>
+        </div>
+    </section>
+
+    <section class="doctor-recommendation">
+        <h2>Rekomendasi Dokter untuk Kesehatan Anda</h2>
+        <p>
+            Kami sudah menyiapkan daftar dokter terbaik sesuai kebutuhan Anda,
+            lengkap dengan informasi jadwal, lokasi, dan spesialisasi untuk
+            memudahkan pencarian.
+        </p>
+
+            <div id="doctor-cards-container" class="doctor-cards">
+        </div>
+
+        <div class="more-button-container">
+            <a href="/dokter" class="more-button">Selengkapnya</a>
+        </div>
+
+    </section>
+    </div>
+    
+    <template id="doctor-card-template">
+        <div class="doctor-card">
+            <div class="doctor-image-container">
+                <img class="doctor-image" src="" alt="Doctor Photo">
+                <div class="doctor-specialty-badge"></div>
+            </div>
+            <div class="doctor-info">
+                <h3 class="doctor-name"></h3>
+                <div class="doctor-details">
+                    <div class="doctor-experience">
+                        <i class="fas fa-user-md"></i>
+                        <span class="experience-text">Spesialis</span>
+                    </div>
+                    <div class="rating">
+                        <span class="stars"></span>
+                        <span class="rating-value"></span>
+                    </div>
+                </div>
+                <button class="book-button">Buat Janji</button>
+            </div>
+        </div>
+    </template>
+    
+    <script src="../js/common-dropdown.js"></script>
+    <script type="module" src="../js/api-client.js"></script>
+    <script type="module" src="../js/user-dashboard.js"></script>
+    <script src="../js/logout.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileBtn = document.querySelector('.profile-btn');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            
+            if (profileBtn && dropdownMenu) {
+                profileBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (dropdownMenu.style.display === 'flex' || dropdownMenu.style.display === 'block') {
+                        dropdownMenu.style.display = 'none';
+                    } else {
+                        dropdownMenu.style.display = 'flex';
+                    }
+                });
+                
+                document.addEventListener('click', function() {
+                    if (dropdownMenu.style.display === 'flex' || dropdownMenu.style.display === 'block') {
+                        dropdownMenu.style.display = 'none';
+                    }
+                });
+                
+                dropdownMenu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Janji Dokter - Medical Health Center</title>
+    <link rel="stylesheet" href="../css/user-booking1.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../js/auth-handler.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!AuthHandler.isAuthenticated()) {
+                setTimeout(() => {
+                    AuthHandler.redirectToLogin();
+                }, 100);
+                return;
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="navbar-left">
+            <a href="/dashboard">
+                <img src="../assets/logo.svg" alt="Medical Health Center Logo" class="logo" />
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="/dashboard">Home</a>
+            <a href="/dokter">Dokter</a>
+            <a href="/rekam-medis">Rekam Medis</a>
+            <a href="/notifikasi">Notifikasi</a>
+        </nav>
+
+        <div class="navbar-right">
+            <div class="notif-btn">
+                <a href="/notifikasi">
+                    <i class="fa-regular fa-bell" style="color: #2859BC;"></i>
+                </a>
+            </div>
+
+            <div class="profile-dropdown">
+                <button class="profile-btn">
+                    <i class="fa-regular fa-user" style="color: #2859BC; font-size: 18px;"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="/profil">Profil</a>
+                    <a href="#" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-container">
+        <section class="doctor-detail-section">
+            <div id="loading" class="loading-indicator">
+                <i class="fas fa-circle-notch fa-spin"></i>
+                <span>Memuat data dokter...</span>
+            </div>
+
+            <div id="doctorDetails" class="doctor-details" style="display: none;">
+                <div class="doctor-image-container">
+                    <img src="../assets/doctor-placeholder.jpg" alt="Foto Dokter" class="doctor-image" id="doctorImage" />
+                </div>
+
+                <div class="doctor-info">
+                    <h2 id="doctorName">Loading...</h2>
+                    <p class="specialist" id="doctorSpecialty">Loading...</p>
+                    
+                    <div class="doctor-rating">
+                        <div class="stars" id="starRating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="rating-value" id="ratingValue">4.8</span>
+                        <span class="reviews-count" id="reviewsCount">(120 ulasan)</span>
+                    </div>
+
+                    <div class="calendar-schedule-container" id="calendarContainer">
+                        <div class="calendar">
+                            <div class="calendar-header">
+                                <button id="prevMonth" aria-label="Bulan sebelumnya">&#8592;</button>
+                                <span id="monthYear">April 2024</span>
+                                <button id="nextMonth" aria-label="Bulan berikutnya">&#8594;</button>
+                            </div>
+                            <div class="calendar-days">
+                                <div>Sen</div>
+                                <div>Sel</div>
+                                <div>Rab</div>
+                                <div>Kam</div>
+                                <div>Jum</div>
+                                <div>Sab</div>
+                                <div>Min</div>
+                            </div>
+                            <div class="calendar-dates" id="calendarDates"></div>
+                            <div class="calendar-legend">
+                                <div class="legend-item"><span class="legend available"></span> Tersedia</div>
+                                <div class="legend-item"><span class="legend limited"></span> Slot Terbatas</div>
+                                <div class="legend-item"><span class="legend unavailable"></span> Tidak Tersedia</div>
+                            </div>
+                        </div>
+                        <div class="schedule-times">
+                            <h4 id="selectedDay">Pilih tanggal untuk melihat jadwal</h4>
+                            <div class="time-slots" id="timeSlots"></div>
+                            <p id="noTimesMessage" style="display: none;">Tidak ada jadwal tersedia untuk tanggal ini.</p>
+                            <button id="confirmAppointment" class="next-button" disabled>Buat Janji</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="doctor-additional-info" id="doctorAdditionalInfo" style="display: none;">
+                <div class="info-tabs">
+                    <div class="info-tab active" data-tab="bio">Biografi</div>
+                    <div class="info-tab" data-tab="specialties">Spesialisasi</div>
+                    <div class="info-tab" data-tab="education">Pendidikan & Pengalaman</div>
+                </div>
+                
+                <div class="tab-content" id="bioContent">
+                    <h3>Tentang Dokter</h3>
+                    <p id="doctorBio">Loading biography...</p>
+                </div>
+                
+                <div class="tab-content" id="specialtiesContent" style="display: none;">
+                    <h3>Area Spesialisasi</h3>
+                    <ul id="specialtiesList">
+                        <li>Loading specialties...</li>
+                    </ul>
+                </div>
+                
+                <div class="tab-content" id="educationContent" style="display: none;">
+                    <h3>Pendidikan</h3>
+                    <ul id="educationList">
+                        <li>Loading education...</li>
+                    </ul>
+                    
+                    <h3>Pengalaman Kerja</h3>
+                    <ul id="experienceList">
+                        <li>Loading experience...</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="/js/common-dropdown.js"></script>
+    <script src="../js/user-booking1.js"></script>
+    <script src="../js/logout.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileBtn = document.querySelector('.profile-btn');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            
+            if (profileBtn && dropdownMenu) {
+                profileBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (dropdownMenu.style.display === 'flex' || dropdownMenu.style.display === 'block') {
+                        dropdownMenu.style.display = 'none';
+                    } else {
+                        dropdownMenu.style.display = 'flex';
+                    }
+                });
+                
+                document.addEventListener('click', function() {
+                    if (dropdownMenu.style.display === 'flex' || dropdownMenu.style.display === 'block') {
+                        dropdownMenu.style.display = 'none';
+                    }
+                });
+                
+                dropdownMenu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

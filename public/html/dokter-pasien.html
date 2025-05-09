@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Pasien Saya | Medical Health Center</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/dashboard-dokter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-info fixed-top">
+        <a class="navbar-brand text-white" href="#">
+            <span id="welcome-message">Pasien Saya</span>
+            <b>Sistem Informasi Rumah Sakit</b>
+        </a>
+        <div class="icon ml-auto">
+            <button id="logoutBtn" class="btn p-0 text-white bg-transparent border-0" data-toggle="tooltip"
+                title="Logout">
+                <i class="fa-solid fa-right-from-bracket mr-3"></i> Logout
+            </button>
+        </div>
+    </nav>
+
+    <div class="row no-gutters mt-5">
+        <div class="col-md-2 bg-dark mt-2 pr-3 pt-4">
+            <ul class="nav flex-column ml-3 mb-5">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/dashboard-dokter"><i class="fa-solid fa-table-columns mr-2"></i>Dashboard</a>
+                    <hr class="bg-secondary">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/jadwal-dokter"><i class="fa-solid fa-calendar-days mr-2"></i>Jadwal Konsultasi</a>
+                    <hr class="bg-secondary">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active text-white" href="/pasien-dokter"><i class="fa-solid fa-hospital-user mr-2"></i>Pasien Saya</a>
+                    <hr class="bg-secondary">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/laporan-dokter"><i class="fa-solid fa-chart-simple mr-2"></i>Laporan Jam Kerja</a>
+                    <hr class="bg-secondary">
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10 p-5 pt-2">
+            <h3><i class="fa-solid fa-hospital-user mr-2"></i> PASIEN SAYA</h3>
+            <hr>
+
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Cari pasien...">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <select id="statusFilter" class="form-control">
+                        <option value="">Semua Status</option>
+                        <option value="active">Aktif</option>
+                        <option value="inactive">Nonaktif</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="patientTable">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Pasien</th>
+                                    <th>Umur</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Terakhir Konsultasi</th>
+                                    <th>Keluhan</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td colspan="8" class="text-center text-muted">Memuat data pasien...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="patientDetailModal" tabindex="-1" role="dialog" aria-labelledby="patientDetailModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="patientDetailModalLabel">Detail Pasien</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>Informasi Pribadi</h6>
+                                    <table class="table table-sm">
+                                        <tr>
+                                            <th>Nama</th>
+                                            <td id="detailName">-</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Umur</th>
+                                            <td id="detailAge">-</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Jenis Kelamin</th>
+                                            <td id="detailGender">-</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Alamat</th>
+                                            <td id="detailAddress">-</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>Riwayat Konsultasi</h6>
+                                    <div id="consultationHistory" class="small">
+                                        <p class="text-muted">Memuat riwayat...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-primary" id="addMedicalRecordBtn">Tambah Catatan Medis</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="/js/logout.js"></script>
+    <script src="/js/doctor-patients.js"></script>
+</body>
+
+</html>
